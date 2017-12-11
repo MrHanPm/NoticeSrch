@@ -8,40 +8,40 @@
     </yd-navbar>
 
     <div class="nav-tabbar flex-wrap row-flex">
-      <div class="page active">
+      <div class="page" :class="{'active': cutTab === 0 }" @click.stop="cuts(0)">
         <img src="https://s.kcimg.cn/wap/images/saas/2.png">
         <p>公告查询</p>
       </div>
-      <div class="page">
+      <div class="page" :class="{'active': cutTab === 1 }" @click.stop="cuts(1)">
         <img src="https://s.kcimg.cn/wap/images/saas/1.png">
         <p>底盘查询</p>
       </div>
-      <div class="page">
+      <div class="page" :class="{'active': cutTab === 2 }" @click.stop="cuts(2)">
         <img src="https://s.kcimg.cn/wap/images/saas/4.png">
         <p>燃油查询</p>
       </div>
-      <div class="page">
+      <div class="page" :class="{'active': cutTab === 3 }" @click.stop="cuts(3)">
         <img src="https://s.kcimg.cn/wap/images/saas/3.png">
         <p>免征查询</p>
       </div>
-      <div class="page">
+      <div class="page" :class="{'active': cutTab === 4 }" @click.stop="cuts(4)">
         <img src="https://s.kcimg.cn/wap/images/saas/5.png">
         <p>新能源查询</p>
       </div>
     </div>
-    <div class="">
 
-    </div>
-    <div style="">
+    <notice-box v-if="cutTab === 0"></notice-box>
+    <chassis-box v-if="cutTab === 1"></chassis-box>
+    <fuel-box v-if="cutTab === 2"></fuel-box>
+    <exempt-box v-if="cutTab === 3"></exempt-box>
+    <energy-box v-if="cutTab === 4"></energy-box>
 
-    </div>
-
-    <div slot="tabbar" class="m-btm">
+    <div slot="tabbar" class="m-btm flex-wrap row-flex">
       <div class="btn-reg">
         <yd-icon name="refresh" size=".28rem"></yd-icon>
         <em>重置</em>
       </div>
-      <div class="btn-sch">
+      <div class="btn-sch page" @click="sub">
         <yd-icon name="search" size=".36rem"></yd-icon>
         <em>开始查询</em>
       </div>
@@ -50,11 +50,38 @@
 </template>
 
 <script>
+import NoticeBox from '@/components/home'
+import ChassisBox from '@/components/chassis'
+import FuelBox from '@/components/fuel'
+import ExemptBox from '@/components/exempt'
+import EnergyBox from '@/components/energy'
 export default {
   name: 'Home',
+  components: {
+    NoticeBox,
+    ChassisBox,
+    FuelBox,
+    ExemptBox,
+    EnergyBox
+  },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      cutTab: 0
+    }
+  },
+  methods: {
+    sub () {
+      this.$dialog.notify({
+        mes: '5秒后自动消失，点我也可以消失！',
+        timeout: 3000,
+        callback: () => {
+          console.log('我走咯！')
+        }
+      })
+    },
+    cuts (e) {
+      this.cutTab = e
+      // console.log(this.cutTab)
     }
   }
 }
@@ -74,10 +101,9 @@ export default {
  .page{
   text-align: center;
   box-sizing: border-box;
-  
     img{
       width: 1rem;
-      margin: 0.3rem auto 0.16rem;
+      margin: 0.26rem auto 0.14rem;
     }
   }
 }
@@ -103,7 +129,6 @@ export default {
   box-shadow: 0 -2px 4px 0 rgba(0,0,0,0.06);
 }
 .btn-reg{
-  float: left;
   width: 1.92rem;
   height: 1rem;
   font-size: 0.28rem;
@@ -112,11 +137,9 @@ export default {
   line-height: 1rem;
 }
 .btn-sch{
-  float: right;
   line-height: 1rem;
   height: 1rem;
   text-align: center;
-  width: 5.58rem;
   font-size: 0.36rem;
   color:#fff;
   background: #1571E5;
