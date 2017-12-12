@@ -22,7 +22,7 @@ export default {
   position: fixed;
   top: 0; left: 0;
 }
-.m-notify{background: rgba(244, 67,54, .9); font-size: 0.28rem;}
+.m-notify{background: rgba(244, 67,54, .9); font-size: 0.28rem; font-weight: 500;}
 .m-notify:after{
   content: '';
   position:absolute;
@@ -60,5 +60,31 @@ export default {
   position: absolute;
   right: 0.4rem;
   transform:rotate(90deg);
+}
+.slider-pagination{
+  display: inline-block;
+  padding: 1px 3px 0;
+  background:rgba(0, 0, 0, .5);
+  border-radius: 7px;
+  width: auto;
+  box-sizing: border-box;
+  text-align: center; line-height: 12px;
+  height: 13px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.slider-pagination>.slider-pagination-item{
+  background-color:rgba(255, 255, 255, .55)
+}
+.slider-pagination>.slider-pagination-item.slider-pagination-item-active{
+  background-color:#fff;
+  width:10px;
+  border-radius: 5px;
+}
+.slider-item{height: 4.42rem; overflow: hidden; width:100%;}
+.slider-item img{
+  height: 4.42rem;
+  width: auto;
+  object-fit: cover;
 }
 </style>

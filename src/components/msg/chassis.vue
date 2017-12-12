@@ -3,11 +3,15 @@
     <yd-cell-group>
       <yd-cell-item>
         <span slot="left">整车型号</span>
-        <yd-input slot="right" v-model="xhVal" regex="bankcard" max="20" :show-success-icon="false" :show-error-icon="false" placeholder="例：CLW5161GSST5"></yd-input>
+        <yd-input slot="right" v-model="xhVal" regex="bankcard" max="20" :show-success-icon="false" :show-clear-icon="false" :show-error-icon="false" placeholder="例：HFC4251P12K7E33S3V"></yd-input>
       </yd-cell-item>
       <yd-cell-item>
-        <span slot="left">车辆类型</span>
-        <yd-input slot="right" v-model="xhVal" regex="bankcard" max="20" :show-success-icon="false" :show-error-icon="false" placeholder="例：洒水车"></yd-input>
+        <span slot="left">企业名称</span>
+        <yd-input slot="right" v-model="xhVal" regex="bankcard" max="20" :show-success-icon="false" :show-clear-icon="false" :show-error-icon="false" placeholder="例：安徽华菱汽车有限公司"></yd-input>
+      </yd-cell-item>
+      <yd-cell-item>
+        <span slot="left">发动机型号</span>
+        <yd-input slot="right" v-model="xhVal" regex="bankcard" max="20" :show-success-icon="false" :show-clear-icon="false" :show-error-icon="false" placeholder="例：CM6D18.345 50"></yd-input>
       </yd-cell-item>
     </yd-cell-group>
   </div>

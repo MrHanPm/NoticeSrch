@@ -50,11 +50,11 @@
 </template>
 
 <script>
-import NoticeBox from '@/components/home'
-import ChassisBox from '@/components/chassis'
-import FuelBox from '@/components/fuel'
-import ExemptBox from '@/components/exempt'
-import EnergyBox from '@/components/energy'
+import NoticeBox from '@/components/home/home'
+import ChassisBox from '@/components/home/chassis'
+import FuelBox from '@/components/home/fuel'
+import ExemptBox from '@/components/home/exempt'
+import EnergyBox from '@/components/home/energy'
 export default {
   name: 'Home',
   components: {
