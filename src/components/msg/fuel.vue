@@ -27,7 +27,6 @@
 
 <script>
 export default {
-  name: 'NoticeBox',
   data () {
     return {
       xhVal: ''

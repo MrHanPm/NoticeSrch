@@ -4,6 +4,7 @@ import router from './router'
 import YDUI from 'vue-ydui'
 import 'vue-ydui/dist/ydui.rem.css'
 import './assets/flex.css'
+import { Loading } from './components/loading/index'
 import { NavBar, NavBarBackIcon } from 'vue-ydui/dist/lib.rem/navbar'
 import { Layout } from 'vue-ydui/dist/lib.rem/layout'
 import { Icons } from 'vue-ydui/dist/lib.rem/icons'
@@ -24,6 +25,7 @@ Vue.component(Input.name, Input)
 Vue.component(Slider.name, Slider)
 Vue.component(SliderItem.name, SliderItem)
 
+Vue.component(Loading.name, Loading)
 Vue.prototype.$dialog = {
   toast: Toast,
   notify: Notify

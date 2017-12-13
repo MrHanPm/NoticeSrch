@@ -75,13 +75,28 @@ export default {
         mes: '5秒后自动消失，点我也可以消失！',
         timeout: 3000,
         callback: () => {
-          console.log('我走咯！')
+          // console.log('我走咯！')
         }
       })
+      switch (this.cutTab) {
+        case 0:
+          this.$router.push('/bulletin')
+          break
+        case 1:
+          this.$router.push('/chassis')
+          break
+        case 2:
+          this.$router.push('/fuel')
+          break
+        case 3:
+          this.$router.push('/exempt')
+          break
+        default:
+          this.$router.push('/energy')
+      }
     },
     cuts (e) {
       this.cutTab = e
-      // console.log(this.cutTab)
     }
   }
 }

@@ -24,7 +24,23 @@
         <td>中国第一汽车集团公司</td>
       </tr>
       <tr>
-        <td>地址</td>
+        <td>企业地址</td>
+        <td>汽车产业开发</td>
+      </tr>
+      <tr>
+        <td>生产地址</td>
+        <td>汽车产业开发</td>
+      </tr>
+      <tr>
+        <td>燃油</td>
+        <td>34</td>
+      </tr>
+      <tr>
+        <td>免征</td>
+        <td>343</td>
+      </tr>
+      <tr>
+        <td>环保</td>
         <td>汽车产业开发</td>
       </tr>
     </table>
@@ -37,8 +53,104 @@
         <td><div>343他4它34天43434dfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfg</div></td>
       </tr>
       <tr>
-        <td>公告型号</td>
-        <td>DFJI3434DGJ3434JK</td>
+        <td>货箱尺寸</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>轴数</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>轴距</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>轴荷</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>整备质量</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>额定载质量</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>总质量</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>挂车质量</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>半挂鞍座</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>载质量系数</td>
+        <td>DFJJ3434JK</td>
+      </tr>
+      <tr>
+        <td>前排乘客</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>额定载客</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>轮胎数</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>轮胎规格</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>弹簧片数</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>前轮距</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>后轮距</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>前悬/后悬</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>接近角/离去角</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>最高车速</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>底盘型号</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>燃油种类</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>防抱死制动系统</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>排放标准</td>
+        <td>345*455</td>
+      </tr>
+      <tr>
+        <td>Vin代码</td>
+        <td>345*455</td>
       </tr>
     </table>
     <div class="tx-name">发动机参数</div>
@@ -54,42 +166,6 @@
         <td>外形尺寸</td>
         <td><div>erer</div></td>
         <td><div>erer</div></td>
-      </tr>
-    </table>
-
-    <div class="tx-name">燃料消耗量参数表</div>
-    <table class="x-table">
-      <tr>
-        <td>产品型号</td>
-        <td>厢式运输车</td>
-      </tr>
-      <tr>
-        <td>执行标准</td>
-        <td>DFJI3434DGJ3434JK</td>
-      </tr>
-    </table>
-
-    <table class="d-table">
-      <tr class="w">
-        <td>满载等速</td>
-        <td rowspan="2">档位</td>
-        <td>燃料消耗量</td>
-      </tr>
-      <tr>
-        <td>车速 km/h</td>
-        <td>油耗 L/100km</td>
-      </tr>
-      <tr>
-        <td>30</td>
-        <td>--</td>
-        <td>--</td>
-      </tr>
-    </table>
-
-    <table class="x-table">
-      <tr style="background:#fff;">
-        <td>燃油消耗量达标车型编号</td>
-        <td>厢式运输车</td>
       </tr>
     </table>
     <div class="tx-name">其他</div>
