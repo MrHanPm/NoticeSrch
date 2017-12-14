@@ -1,14 +1,14 @@
 <template>
   <yd-layout>
     <yd-navbar slot="navbar" title="公告号查询结果" color="#333" fontsize=".36rem">
-      <router-link to="#" slot="left">
+      <div slot="left" @click="this.back">
         <yd-navbar-back-icon></yd-navbar-back-icon>
-      </router-link>
+      </div>
     </yd-navbar>
 
     <div class="contnb">共有<em>2343</em>条查询结果</div>
 
-    <div class="bul-box">
+    <div class="bul-box" @click.stop="goMsg">
       <div class="bu-title">及肤色及肤色是对方DFGDFG及肤色是对方DFGDFG是对方DFGDFG</div>
       <div class="flex-wrap row-flex b-box">
         <div class="b-img">
@@ -27,9 +27,7 @@
       </ul>
     </div>
 
-    <div class="loading visible load-boxs">
-      <span class="loading-ring"> </span>
-    </div>
+    <v-more :show="isMore"></v-more>
     <v-loading :show="isLod"></v-loading>
   </yd-layout>
 </template>
@@ -42,7 +40,8 @@ export default {
   data () {
     return {
       cutTab: 0,
-      isLod: false
+      isLod: false,
+      isMore: true
     }
   },
   methods: {
@@ -52,6 +51,9 @@ export default {
     cuts (e) {
       this.cutTab = e
       // console.log(this.cutTab)
+    },
+    goMsg () {
+      this.jump('/msgs')
     }
   }
 }

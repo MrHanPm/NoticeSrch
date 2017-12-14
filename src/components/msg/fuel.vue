@@ -15,7 +15,7 @@
         <td>209</td>
         <td>水电费水电费</td>
       </tr>
-      <tr>
+      <tr @click.stop="goMsg">
         <td>配置1</td>
         <td>209</td>
         <td>水电费水电费</td>
@@ -30,6 +30,11 @@ export default {
   data () {
     return {
       xhVal: ''
+    }
+  },
+  methods: {
+    goMsg () {
+      this.jump('/detail')
     }
   }
 }

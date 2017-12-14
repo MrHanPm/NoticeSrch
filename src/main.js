@@ -2,9 +2,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import YDUI from 'vue-ydui'
+import mixins from './mixins'
 import 'vue-ydui/dist/ydui.rem.css'
 import './assets/flex.css'
 import { Loading } from './components/loading/index'
+import { More } from './components/loading/more'
 import { NavBar, NavBarBackIcon } from 'vue-ydui/dist/lib.rem/navbar'
 import { Layout } from 'vue-ydui/dist/lib.rem/layout'
 import { Icons } from 'vue-ydui/dist/lib.rem/icons'
@@ -26,12 +28,14 @@ Vue.component(Slider.name, Slider)
 Vue.component(SliderItem.name, SliderItem)
 
 Vue.component(Loading.name, Loading)
+Vue.component(More.name, More)
 Vue.prototype.$dialog = {
   toast: Toast,
   notify: Notify
 }
 Vue.config.productionTip = false
 Vue.use(YDUI)
+Vue.mixin(mixins)
 
 /* eslint-disable no-new */
 new Vue({

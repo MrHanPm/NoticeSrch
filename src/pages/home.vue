@@ -1,9 +1,9 @@
 <template>
   <yd-layout>
     <yd-navbar slot="navbar" title="公告号查询" color="#333" fontsize=".36rem">
-      <router-link to="#" slot="left">
+      <div slot="left" @click="this.back">
         <yd-navbar-back-icon></yd-navbar-back-icon>
-      </router-link>
+      </div>
       <div slot="right" class="red-box">当前第345批</div>
     </yd-navbar>
 
@@ -30,8 +30,8 @@
       </div>
     </div>
 
-    <notice-box v-if="cutTab === 0"></notice-box>
-    <chassis-box v-if="cutTab === 1"></chassis-box>
+    <notice-box v-if="cutTab === 0" @setVal="setNotice"></notice-box>
+    <chassis-box v-if="cutTab === 1" @setVal="setChass"></chassis-box>
     <fuel-box v-if="cutTab === 2"></fuel-box>
     <exempt-box v-if="cutTab === 3"></exempt-box>
     <energy-box v-if="cutTab === 4"></energy-box>
@@ -66,7 +66,9 @@ export default {
   },
   data () {
     return {
-      cutTab: 0
+      cutTab: 0,
+      noticeVal: {},
+      chassVal: {}
     }
   },
   methods: {
@@ -80,23 +82,31 @@ export default {
       })
       switch (this.cutTab) {
         case 0:
-          this.$router.push('/bulletin')
+          this.jump('/bulletin')
           break
         case 1:
-          this.$router.push('/chassis')
+          this.jump('/chassis')
           break
         case 2:
-          this.$router.push('/fuel')
+          this.jump('/fuel')
           break
         case 3:
-          this.$router.push('/exempt')
+          this.jump('/exempt')
           break
         default:
-          this.$router.push('/energy')
+          this.jump('/energy')
       }
     },
     cuts (e) {
       this.cutTab = e
+    },
+    setNotice (val) {
+      this.noticeVal = val
+      console.log(JSON.stringify(this.noticeVal))
+    },
+    setChass (val) {
+      this.chassVal = val
+      console.log(JSON.stringify(this.chassVal))
     }
   }
 }

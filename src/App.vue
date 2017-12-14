@@ -47,6 +47,7 @@ export default {
   border-radius: 2px;
   text-indent: 0.16rem;
 }
+.cell-right input[type=date]:focus, .cell-right input[type=datetime-local]:focus, .cell-right input[type=email]:focus, .cell-right input[type=number]:focus, .cell-right input[type=password]:focus, .cell-right input[type=tel]:focus, .cell-right input[type=text]:focus, .cell-right input[type=time]:focus, .cell-right input[type=url]:focus{border-color:#1571E5;}
 .cell-arrow{ position: relative;}
 .cell-arrow select{
   width: 4rem;

@@ -1,9 +1,9 @@
 <template>
   <yd-layout>
     <yd-navbar slot="navbar" title="公告号查询详情" color="#333" fontsize=".36rem">
-      <router-link to="#" slot="left">
+      <div slot="left" @click="this.back">
         <yd-navbar-back-icon></yd-navbar-back-icon>
-      </router-link>
+      </div>
     </yd-navbar>
 
     <yd-slider autoplay="5000">
