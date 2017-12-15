@@ -3,15 +3,27 @@
     <yd-cell-group>
       <yd-cell-item>
         <span slot="left">整车型号</span>
-        <yd-input slot="right" v-model="xhVal" regex="bankcard" max="20" :show-success-icon="false" :show-clear-icon="false" :show-error-icon="false" placeholder="例：HFC4251P12K7E33S3V"></yd-input>
+        <div slot="right">
+          <input type="text" v-model="val.promodel" 
+            placeholder="例：HFC4251P12K7E33S3V"
+            autocomplete="off">
+        </div>
       </yd-cell-item>
       <yd-cell-item>
         <span slot="left">企业名称</span>
-        <yd-input slot="right" v-model="xhVal" regex="bankcard" max="20" :show-success-icon="false" :show-clear-icon="false" :show-error-icon="false" placeholder="例：安徽华菱汽车有限公司"></yd-input>
+        <div slot="right">
+          <input type="text" v-model="val.company" 
+            placeholder="例：安徽华菱汽车有限公司"
+            autocomplete="off">
+        </div>
       </yd-cell-item>
       <yd-cell-item>
         <span slot="left">发动机型号</span>
-        <yd-input slot="right" v-model="xhVal" regex="bankcard" max="20" :show-success-icon="false" :show-clear-icon="false" :show-error-icon="false" placeholder="例：CM6D18.345 50"></yd-input>
+        <div slot="right">
+          <input type="text" v-model="val.enginemodel" 
+            placeholder="例：CM6D18.345 50"
+            autocomplete="off">
+        </div>
       </yd-cell-item>
     </yd-cell-group>
   </div>
@@ -19,10 +31,33 @@
 
 <script>
 export default {
-  name: 'NoticeBox',
+  props: {
+    ret: Number
+  },
   data () {
     return {
-      xhVal: ''
+      val: {
+        promodel: '',
+        company: '',
+        enginemodel: ''
+      }
+    }
+  },
+  watch: {
+    ret: 'regVal',
+    val: {
+      handler (newVal, oldVal) {
+        this.$emit('setVal', newVal)
+      },
+      deep: true
+    }
+  },
+  created () {
+    this.oldVal = {...this.val}
+  },
+  methods: {
+    regVal (nw, od) {
+      this.val = {...this.oldVal}
     }
   }
 }
@@ -41,6 +76,7 @@ export default {
 .m-cell-box{
   margin-bottom:0;
 }
+.cell-right>div{display: flex;width: 100%;}
 .box-fw .m-input{
   -webkit-box-flex: 1;-moz-box-flex: 1;-ms-flex: 1;-webkit-flex: 1;flex: 1;overflow: hidden;
 }

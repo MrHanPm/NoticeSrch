@@ -26,11 +26,11 @@ export default {
 .m-notify:after{
   content: '';
   position:absolute;
-  bottom:0.08rem;
+  bottom:0.06rem;
   display: block;
   left:50%;
   transform:translate3d(-50%,0,0);
-  width:0.7rem;height:0.08rem;border-radius:0.1rem;background:#fff;opacity:.9;
+  width:0.7rem;height:0.08rem;border-radius:0.1rem;background:#fff;opacity:.7;
 }
 .cell-right{text-align: left; padding-left:0.24rem;}
 .m-cell:after{display: none;}

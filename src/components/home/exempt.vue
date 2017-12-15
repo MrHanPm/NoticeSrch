@@ -3,11 +3,19 @@
     <yd-cell-group>
       <yd-cell-item>
         <span slot="left">整车型号</span>
-        <yd-input slot="right" v-model="xhVal" regex="bankcard" max="20" :show-success-icon="false" :show-clear-icon="false" :show-error-icon="false" placeholder="例：CLW5161GSST5"></yd-input>
+        <div slot="right">
+          <input type="text" v-model="val.modelNumber" 
+            placeholder="例：CLW5161GSST5"
+            autocomplete="off">
+        </div>
       </yd-cell-item>
       <yd-cell-item>
         <span slot="left">车辆类型</span>
-        <yd-input slot="right" v-model="xhVal" regex="bankcard" max="20" :show-success-icon="false" :show-clear-icon="false" :show-error-icon="false" placeholder="例：洒水车"></yd-input>
+        <div slot="right">
+          <input type="text" v-model="val.carType" 
+            placeholder="例：洒水车"
+            autocomplete="off">
+        </div>
       </yd-cell-item>
     </yd-cell-group>
   </div>
@@ -15,10 +23,32 @@
 
 <script>
 export default {
-  name: 'NoticeBox',
+  props: {
+    ret: Number
+  },
   data () {
     return {
-      xhVal: ''
+      val: {
+        modelNumber: '',
+        carType: ''
+      }
+    }
+  },
+  watch: {
+    ret: 'regVal',
+    val: {
+      handler (newVal, oldVal) {
+        this.$emit('setVal', newVal)
+      },
+      deep: true
+    }
+  },
+  created () {
+    this.oldVal = {...this.val}
+  },
+  methods: {
+    regVal (nw, od) {
+      this.val = {...this.oldVal}
     }
   }
 }
@@ -30,7 +60,7 @@ export default {
   background: #fff;
   padding-bottom: 10px;
 }
-
+.cell-right>div{display: flex;width: 100%;}
 .shili{
   color: #1571E5; float: left; width:100%; font-size: 0.28rem;
 }

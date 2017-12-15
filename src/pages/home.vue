@@ -30,14 +30,19 @@
       </div>
     </div>
 
-    <notice-box v-if="cutTab === 0" @setVal="setNotice"></notice-box>
-    <chassis-box v-if="cutTab === 1" @setVal="setChass"></chassis-box>
-    <fuel-box v-if="cutTab === 2"></fuel-box>
-    <exempt-box v-if="cutTab === 3"></exempt-box>
-    <energy-box v-if="cutTab === 4"></energy-box>
+    <notice-box v-if="cutTab === 0" :ret="resets"
+      @setVal="setVals"></notice-box>
+    <chassis-box v-if="cutTab === 1" :ret="resets"
+      @setVal="setVals"></chassis-box>
+    <fuel-box v-if="cutTab === 2" :ret="resets"
+      @setVal="setVals"></fuel-box>
+    <exempt-box v-if="cutTab === 3" :ret="resets"
+      @setVal="setVals"></exempt-box>
+    <energy-box v-if="cutTab === 4" :ret="resets"
+      @setVal="setVals"></energy-box>
 
     <div slot="tabbar" class="m-btm flex-wrap row-flex">
-      <div class="btn-reg">
+      <div class="btn-reg" @click="reset">
         <yd-icon name="refresh" size=".28rem"></yd-icon>
         <em>重置</em>
       </div>
@@ -67,46 +72,84 @@ export default {
   data () {
     return {
       cutTab: 0,
+      resets: 0,
       noticeVal: {},
-      chassVal: {}
+      chassVal: {},
+      fuelVal: {},
+      exemVal: {},
+      enerVal: {}
     }
   },
   methods: {
     sub () {
-      this.$dialog.notify({
-        mes: '5秒后自动消失，点我也可以消失！',
-        timeout: 3000,
-        callback: () => {
-          // console.log('我走咯！')
-        }
-      })
       switch (this.cutTab) {
         case 0:
-          this.jump('/bulletin')
+          if (this.forVal(this.noticeVal)) {
+            this.localItem('VAL', JSON.stringify(this.noticeVal))
+            this.jump('/bulletin')
+          }
           break
         case 1:
-          this.jump('/chassis')
+          if (this.forVal(this.chassVal)) {
+            this.localItem('VAL', JSON.stringify(this.chassVal))
+            this.jump('/chassis')
+          }
           break
         case 2:
-          this.jump('/fuel')
+          if (this.forVal(this.fuelVal)) {
+            this.localItem('VAL', JSON.stringify(this.fuelVal))
+            this.jump('/fuel')
+          }
           break
         case 3:
-          this.jump('/exempt')
+          if (this.forVal(this.exemVal)) {
+            this.localItem('VAL', JSON.stringify(this.exemVal))
+            this.jump('/exempt')
+          }
           break
         default:
-          this.jump('/energy')
+          if (this.forVal(this.enerVal)) {
+            this.localItem('VAL', JSON.stringify(this.enerVal))
+            this.jump('/energy')
+          }
       }
+    },
+    setVals (val) {
+      switch (this.cutTab) {
+        case 0:
+          this.noticeVal = val
+          break
+        case 1:
+          this.chassVal = val
+          break
+        case 2:
+          this.fuelVal = val
+          break
+        case 3:
+          this.exemVal = val
+          break
+        default:
+          this.enerVal = val
+      }
+    },
+    forVal (objs) {
+      for (let em in objs) {
+        if (objs[em] !== '') {
+          return true
+        }
+      }
+      this.$dialog.notify({
+        mes: '请输入筛选条件～',
+        timeout: 3000,
+        callback: () => {}
+      })
+      return false
     },
     cuts (e) {
       this.cutTab = e
     },
-    setNotice (val) {
-      this.noticeVal = val
-      console.log(JSON.stringify(this.noticeVal))
-    },
-    setChass (val) {
-      this.chassVal = val
-      console.log(JSON.stringify(this.chassVal))
+    reset () {
+      this.resets++
     }
   }
 }
