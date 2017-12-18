@@ -44,9 +44,9 @@
 </template>
 
 <script>
+import XHR from '@/api/service'
 export default {
   components: {
-
   },
   data () {
     return {
@@ -55,7 +55,23 @@ export default {
       isMore: true
     }
   },
+  created () {
+    this.loadList()
+  },
   methods: {
+    loadList () {
+      let VAL = JSON.parse(localStorage.getItem('VAL'))
+      let json = {}
+      json.cpsb = VAL.cpsb
+      XHR.getDip(json).then(res => {
+        if (res.data.status === 1) {
+          // this.dbList = res.data.newData
+          // this.total = res.data.total
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     sub () {
 
     },

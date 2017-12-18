@@ -85,31 +85,31 @@ export default {
       switch (this.cutTab) {
         case 0:
           if (this.forVal(this.noticeVal)) {
-            this.localItem('VAL', JSON.stringify(this.noticeVal))
+            localStorage.setItem('VAL', JSON.stringify(this.noticeVal))
             this.jump('/bulletin')
           }
           break
         case 1:
           if (this.forVal(this.chassVal)) {
-            this.localItem('VAL', JSON.stringify(this.chassVal))
+            localStorage.setItem('VAL', JSON.stringify(this.chassVal))
             this.jump('/chassis')
           }
           break
         case 2:
           if (this.forVal(this.fuelVal)) {
-            this.localItem('VAL', JSON.stringify(this.fuelVal))
+            localStorage.setItem('VAL', JSON.stringify(this.fuelVal))
             this.jump('/fuel')
           }
           break
         case 3:
           if (this.forVal(this.exemVal)) {
-            this.localItem('VAL', JSON.stringify(this.exemVal))
+            localStorage.setItem('VAL', JSON.stringify(this.exemVal))
             this.jump('/exempt')
           }
           break
         default:
           if (this.forVal(this.enerVal)) {
-            this.localItem('VAL', JSON.stringify(this.enerVal))
+            localStorage.setItem('VAL', JSON.stringify(this.enerVal))
             this.jump('/energy')
           }
       }

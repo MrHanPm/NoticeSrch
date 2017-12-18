@@ -6,24 +6,24 @@
       </div>
     </yd-navbar>
 
-    <div class="contnb">共有<em>2343</em>条查询结果</div>
+    <div class="contnb">共有<em>{{this.total}}</em>条查询结果</div>
 
-    <div class="bul-box" @click.stop="goMsg">
-      <div class="bu-title">及肤色及肤色是对方DFGDFG及肤色是对方DFGDFG是对方DFGDFG</div>
+    <div class="bul-box" v-for="em in dbList" @click.stop="goMsg">
+      <div class="bu-title">{{em.title}}</div>
       <div class="flex-wrap row-flex b-box">
         <div class="b-img">
-          <img src="http://static.ydcss.com/uploads/ydui/2.jpg">
+          <img :src="em.pic">
         </div>
         <div class="page b-msg">
-          <p>发动机: SDFJK43</p>
-          <p>轴距: SDFJK43</p>
-          <p>外形尺寸: SDFJK43</p>
+          <p>发动机: {{em.engine}}</p>
+          <p>轴距: {{em.zj}}</p>
+          <p>外形尺寸: {{em.size}}</p>
         </div>
       </div>
       <ul class="flex-wrap row-flex b-ft">
-        <li>批次:300</li>
-        <li>燃油:是</li>
-        <li>免征:－</li>
+        <li>批次:{{em.pc}}</li>
+        <li>燃油:{{em.ry}}</li>
+        <li>免征:{{em.mz}}</li>
       </ul>
     </div>
 
@@ -33,18 +33,36 @@
 </template>
 
 <script>
+import XHR from '@/api/service'
 export default {
-  components: {
-
-  },
+  components: {},
   data () {
     return {
       cutTab: 0,
       isLod: false,
-      isMore: true
+      isMore: true,
+
+      dbList: {},
+      total: 0
     }
   },
+  created () {
+    this.loadList()
+  },
   methods: {
+    loadList () {
+      let VAL = JSON.parse(localStorage.getItem('VAL'))
+      let json = {}
+      json.brand = VAL.brand
+      XHR.getGong(json).then(res => {
+        if (res.data.status === 1) {
+          this.dbList = res.data.newData
+          this.total = res.data.total
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     sub () {
 
     },
@@ -111,6 +129,8 @@ export default {
     color: #5C6066;
     line-height: 0.5rem;
     display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     overflow: hidden;
   }
 }
