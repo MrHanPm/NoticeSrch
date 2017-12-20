@@ -6,34 +6,34 @@
       </div>
     </yd-navbar>
 
-    <div class="contnb">共有<em>2340</em>条查询结果</div>
+    <div class="contnb">共有<em>{{this.total}}</em>条查询结果</div>
 
-    <div class="bul-box">
-      <div class="bu-title">及肤色及肤色是对方DFGDFG及肤色是对方DFGDFG是对方DFGDFG</div>
+    <div class="bul-box" v-for="(em, index) in dbList" :key="index">
+      <div class="bu-title">{{em.title}}</div>
       <ul class="b-ft">
         <li class="flex-wrap row-flex">
           <div>发动机:</div>
-          <div class="page">CA34GD-W43</div>
+          <div class="page">{{em.engine}}</div>
         </li>
         <li class="flex-wrap row-flex">
           <div>轴距:</div>
-          <div class="page">CA34GD-W43</div>
+          <div class="page">{{em.zj}}</div>
         </li>
         <li class="flex-wrap row-flex">
           <div>底盘名称:</div>
-          <div class="page">载货汽车地盘</div>
+          <div class="page">{{em.dpmc}}</div>
         </li>
         <li class="flex-wrap row-flex">
           <div>批次:</div>
-          <div class="page">300</div>
+          <div class="page">{{em.pc}}</div>
         </li>
         <li class="flex-wrap row-flex">
           <div>地盘类别:</div>
-          <div class="page">二类</div>
+          <div class="page">{{em.dplb}}</div>
         </li>
         <li class="flex-wrap row-flex">
           <div>燃油类型:</div>
-          <div class="page">汽油／NG两用燃料</div>
+          <div class="page">{{em.rlzl}}</div>
         </li>
       </ul>
     </div>
@@ -46,35 +46,73 @@
 <script>
 import XHR from '@/api/service'
 export default {
-  components: {
-  },
+  components: {},
   data () {
     return {
       cutTab: 0,
       isLod: false,
-      isMore: true
+      isMore: true,
+      isScrl: true,
+
+      page: 1,
+      dbList: [],
+      total: 0,
+      val: {}
     }
   },
   created () {
+    let VAL = JSON.parse(localStorage.getItem('VAL'))
+    let newVal = {}
+    let psList = ['dpxh', 'cpsb', 'cpmc', 'zs', 'pfsp', 'rlzl', 'Mfdj']
+    let psList2 = ['zbzl', 'zzl', 'zj', 'pc', 'c', 'Mgl', 'k', 'g']
+    for (let em in psList) {
+      if (VAL[psList[em]]) {
+        newVal[psList[em]] = VAL[psList[em]]
+      }
+    }
+    for (let em in psList2) {
+      let v1 = `${psList2[em]}1`
+      let v2 = `${psList2[em]}2`
+      if (`${VAL[v1]},${VAL[v2]}` !== ',') {
+        newVal[psList2[em]] = `${VAL[v1]},${VAL[v2]}`
+      }
+    }
+    this.val = newVal
     this.loadList()
+  },
+  mounted () {
+    let DOM = document.getElementById('scrollView')
+    DOM.addEventListener('scroll', () => {
+      if (DOM.scrollHeight - DOM.offsetHeight - DOM.scrollTop < 14 && this.isScrl) {
+        this.loadList()
+      }
+    }, false)
   },
   methods: {
     loadList () {
-      let VAL = JSON.parse(localStorage.getItem('VAL'))
-      let json = {}
-      json.cpsb = VAL.cpsb
-      XHR.getDip(json).then(res => {
+      let v = this.val
+      v.page = this.page
+      this.isScrl = false
+      XHR.getDip(v).then(res => {
         if (res.data.status === 1) {
-          // this.dbList = res.data.newData
-          // this.total = res.data.total
+          if (this.isLod) {
+            this.isLod = false
+          }
+          this.dbList.push(...res.data.newData)
+          this.total = res.data.total
+          this.page++
+          if (this.page > Math.ceil(this.total / 10)) {
+            this.isScrl = false
+            this.isMore = false
+            return
+          }
+          this.isScrl = true
         }
       }).catch(err => {
         console.log(err)
       })
     },
-    sub () {
-
-    },
+    sub () {},
     cuts (e) {
       this.cutTab = e
       // console.log(this.cutTab)
@@ -96,6 +134,7 @@ export default {
   background: #fff;
   position: relative;
   padding: 0 0.24rem 0.16rem;
+  margin-bottom: 0.08rem;
 }
 .bul-box:after{
   position: absolute;

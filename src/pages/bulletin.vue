@@ -7,8 +7,8 @@
     </yd-navbar>
 
     <div class="contnb">共有<em>{{this.total}}</em>条查询结果</div>
-
-    <div class="bul-box" v-for="em in dbList" @click.stop="goMsg">
+    <div class="bul-box" v-for="(em, index) in dbList" :key="index"
+    @click.stop="goMsg">
       <div class="bu-title">{{em.title}}</div>
       <div class="flex-wrap row-flex b-box">
         <div class="b-img">
@@ -39,32 +39,67 @@ export default {
   data () {
     return {
       cutTab: 0,
-      isLod: false,
+      isLod: true,
       isMore: true,
+      isScrl: true,
 
-      dbList: {},
-      total: 0
+      page: 1,
+      dbList: [],
+      total: 0,
+      val: {}
     }
   },
   created () {
+    let VAL = JSON.parse(localStorage.getItem('VAL'))
+    let newVal = {}
+    let psList = ['model', 'brand', 'protype', 'chassis1', 'zhoushu', 'pfstd', 'fueltype', 'address', 'factory', 'engine', 'peoplenum', 'remarks']
+    let psList2 = ['pcsn', 'edweight', 'totalweight', 'zbweight', 'zhouju', 'trucklength', 'truckwidth', 'truckheight', 'boxlength', 'boxwidth', 'boxheight', 'maxrate']
+    for (let em in psList) {
+      if (VAL[psList[em]]) {
+        newVal[psList[em]] = VAL[psList[em]]
+      }
+    }
+    for (let em in psList2) {
+      let v1 = `${psList2[em]}1`
+      let v2 = `${psList2[em]}2`
+      if (`${VAL[v1]},${VAL[v2]}` !== ',') {
+        newVal[psList2[em]] = `${VAL[v1]},${VAL[v2]}`
+      }
+    }
+    this.val = newVal
     this.loadList()
+  },
+  mounted () {
+    let DOM = document.getElementById('scrollView')
+    DOM.addEventListener('scroll', () => {
+      if (DOM.scrollHeight - DOM.offsetHeight - DOM.scrollTop < 14 && this.isScrl) {
+        this.loadList()
+      }
+    }, false)
   },
   methods: {
     loadList () {
-      let VAL = JSON.parse(localStorage.getItem('VAL'))
-      let json = {}
-      json.brand = VAL.brand
-      XHR.getGong(json).then(res => {
+      let v = this.val
+      v.page = this.page
+      this.isScrl = false
+      XHR.getGong(v).then(res => {
         if (res.data.status === 1) {
-          this.dbList = res.data.newData
+          if (this.isLod) {
+            this.isLod = false
+          }
+          this.dbList.push(...res.data.newData)
           this.total = res.data.total
+          this.page++
+          if (this.page > Math.ceil(this.total / 10)) {
+            this.isScrl = false
+            this.isMore = false
+            return
+          }
+          this.isScrl = true
         }
       }).catch(err => {
         console.log(err)
       })
-    },
-    sub () {
-
     },
     cuts (e) {
       this.cutTab = e
@@ -89,6 +124,7 @@ export default {
 .bul-box{
   background: #fff;
   padding: 0 0.24rem;
+  margin-bottom: 0.08rem;
 }
 .b-box{
   height: 1.5rem;
@@ -144,5 +180,4 @@ export default {
     overflow: hidden;
   }
 }
-
 </style>

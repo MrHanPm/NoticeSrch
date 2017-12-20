@@ -6,30 +6,30 @@
       </div>
     </yd-navbar>
 
-    <div class="contnb">共有<em>2340</em>条查询结果</div>
+    <div class="contnb">共有<em>{{this.total}}</em>条查询结果</div>
 
-    <div class="bul-box">
-      <div class="bu-title">及肤色及肤色是对方</div>
+    <div class="bul-box" v-for="(em, index) in dbList" :key="index">
+      <div class="bu-title">{{em.title}}</div>
       <ul class="b-ft">
         <li class="flex-wrap row-flex">
           <div>车辆名称:</div>
-          <div class="page">售货车</div>
+          <div class="page">{{em.clmc}}</div>
         </li>
         <li class="flex-wrap row-flex">
           <div>驱动形式:</div>
-          <div class="page">4*2</div>
+          <div class="page">{{em.qdxs}}</div>
         </li>
         <li class="flex-wrap row-flex">
           <div>发动机:</div>
-          <div class="page">wadf3434</div>
+          <div class="page">{{em.fdj}}</div>
         </li>
         <li class="flex-wrap row-flex">
           <div>变速箱:</div>
-          <div class="page">12TR300</div>
+          <div class="page">{{em.bsx}}</div>
         </li>
         <li class="flex-wrap row-flex">
           <div>速比:</div>
-          <div class="page">4.677</div>
+          <div class="page">{{em.sb}}</div>
         </li>
       </ul>
     </div>
@@ -40,21 +40,65 @@
 </template>
 
 <script>
+import XHR from '@/api/service'
 export default {
-  components: {
-
-  },
+  components: {},
   data () {
     return {
       cutTab: 0,
       isLod: false,
-      isMore: true
+      isMore: true,
+      page: 1,
+      dbList: [],
+      total: 0,
+      val: {}
     }
   },
+  created () {
+    let VAL = JSON.parse(localStorage.getItem('VAL'))
+    let newVal = {}
+    let psList = ['promodel', 'company', 'enginemodel']
+    for (let em in psList) {
+      if (VAL[psList[em]]) {
+        newVal[psList[em]] = VAL[psList[em]]
+      }
+    }
+    this.val = newVal
+    this.loadList()
+  },
+  mounted () {
+    let DOM = document.getElementById('scrollView')
+    DOM.addEventListener('scroll', () => {
+      if (DOM.scrollHeight - DOM.offsetHeight - DOM.scrollTop < 14 && this.isScrl) {
+        this.loadList()
+      }
+    }, false)
+  },
   methods: {
-    sub () {
-
+    loadList () {
+      let v = this.val
+      v.page = this.page
+      this.isScrl = false
+      XHR.getPro(v).then(res => {
+        if (res.data.status === 1) {
+          if (this.isLod) {
+            this.isLod = false
+          }
+          this.dbList.push(...res.data.newData)
+          this.total = res.data.total
+          this.page++
+          if (this.page > Math.ceil(this.total / 10)) {
+            this.isScrl = false
+            this.isMore = false
+            return
+          }
+          this.isScrl = true
+        }
+      }).catch(err => {
+        console.log(err)
+      })
     },
+    sub () {},
     cuts (e) {
       this.cutTab = e
       // console.log(this.cutTab)
@@ -76,7 +120,7 @@ export default {
   background: #fff;
   position: relative;
   padding: 0 0.24rem 0.16rem;
-  margin-bottom: 5px;
+  margin-bottom: 0.08rem;
 }
 .bul-box:after{
   position: absolute;

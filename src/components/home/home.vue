@@ -34,7 +34,7 @@
       <yd-cell-item>
         <span slot="left">底盘型号</span>
         <div slot="right">
-          <input type="text" v-model="val.chassis" 
+          <input type="text" v-model="val.chassis1" 
             placeholder="例：CGC1140HDE44E"
             autocomplete="off">
         </div>
@@ -315,7 +315,7 @@ export default {
         model: '',
         brand: '',
         protype: '',
-        chassis: '',
+        chassis1: '',
         zhoushu: '',
         zhouju1: '',
         zhouju2: '',

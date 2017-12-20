@@ -6,34 +6,34 @@
       </div>
     </yd-navbar>
 
-    <div class="contnb">共有<em>2340</em>条查询结果</div>
+    <div class="contnb">共有<em>{{this.total}}</em>条查询结果</div>
 
     
-    <ul class="b-ft">
+    <ul class="b-ft" v-for="(em, index) in dbList" :key="index">
       <li class="flex-wrap row-flex">
         <div>批次:</div>
-        <div class="page">售货车</div>
+        <div class="page">{{em.batch}}</div>
       </li>
       <li class="flex-wrap row-flex">
         <div>企业名称:</div>
-        <div class="page">4*2</div>
+        <div class="page">{{em.companyName}}</div>
       </li>
       <li class="flex-wrap row-flex">
         <div>品牌名称:</div>
-        <div class="page">wadf3434</div>
+        <div class="page">{{em.brand}}</div>
       </li>
       <li class="flex-wrap row-flex">
         <div>车辆型号:</div>
-        <div class="page">12TR300</div>
+        <div class="page">{{em.modelNumber}}</div>
       </li>
       <li class="flex-wrap row-flex">
         <div>车辆名称:</div>
-        <div class="page">4.677</div>
+        <div class="page">{{em.carName}}</div>
       </li>
       <li class="flex-wrap row-flex">
         <div>目录序号:</div>
         <div class="page">
-          <em>(23)</em>
+          <em>{{em.dirNumber}}</em>
           <em class="w">查看公告 ></em>
         </div>
       </li>
@@ -45,21 +45,65 @@
 </template>
 
 <script>
+import XHR from '@/api/service'
 export default {
-  components: {
-
-  },
+  components: {},
   data () {
     return {
       cutTab: 0,
       isLod: false,
-      isMore: true
+      isMore: true,
+      page: 1,
+      dbList: [],
+      total: 0,
+      val: {}
     }
   },
+  created () {
+    let VAL = JSON.parse(localStorage.getItem('VAL'))
+    let newVal = {}
+    let psList = ['modelNumber', 'companyName', 'brand', 'carName']
+    for (let em in psList) {
+      if (VAL[psList[em]]) {
+        newVal[psList[em]] = VAL[psList[em]]
+      }
+    }
+    this.val = newVal
+    this.loadList()
+  },
+  mounted () {
+    let DOM = document.getElementById('scrollView')
+    DOM.addEventListener('scroll', () => {
+      if (DOM.scrollHeight - DOM.offsetHeight - DOM.scrollTop < 14 && this.isScrl) {
+        this.loadList()
+      }
+    }, false)
+  },
   methods: {
-    sub () {
-
+    loadList () {
+      let v = this.val
+      v.page = this.page
+      this.isScrl = false
+      XHR.getNew(v).then(res => {
+        if (res.data.status === 1) {
+          if (this.isLod) {
+            this.isLod = false
+          }
+          this.dbList.push(...res.data.newData)
+          this.total = res.data.total
+          this.page++
+          if (this.page > Math.ceil(this.total / 10)) {
+            this.isScrl = false
+            this.isMore = false
+            return
+          }
+          this.isScrl = true
+        }
+      }).catch(err => {
+        console.log(err)
+      })
     },
+    sub () {},
     cuts (e) {
       this.cutTab = e
       // console.log(this.cutTab)
@@ -93,6 +137,7 @@ export default {
   padding: 0.16rem 0.24rem;
   margin-bottom: 5px;
   font-size: 0.28rem;
+  margin-bottom: 0.08rem;
   li{
     height: 0.48rem;
     color: #5c6066;

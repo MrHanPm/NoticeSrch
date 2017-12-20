@@ -44,6 +44,7 @@ export default {
   },
   data () {
     return {
+      oldVal: {},
       val: {
         modelNumber: '',
         carName: '',

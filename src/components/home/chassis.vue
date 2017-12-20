@@ -120,7 +120,7 @@
       <yd-cell-item>
         <span slot="left">发动机型号</span>
         <div slot="right">
-          <input type="text" v-model="val.mfdj" 
+          <input type="text" v-model="val.Mfdj" 
             placeholder="例：SOFIM8140.43S5"
             autocomplete="off">
         </div>
@@ -129,13 +129,13 @@
         <span slot="left">整车长</span>
         <div slot="right" class="flex-wrap row-flex box-fw">
           <div class="m-input">
-            <input type="tel" max="4" v-model="val.carleng1" 
+            <input type="tel" max="4" v-model="val.c1" 
               placeholder="例：5000"
               autocomplete="off">
           </div>
           <span>到</span>
           <div class="m-input">
-            <input type="tel" max="4" v-model="val.carleng2" 
+            <input type="tel" max="4" v-model="val.c2" 
               placeholder="例：7200"
               autocomplete="off">
           </div>
@@ -145,13 +145,13 @@
         <span slot="left">发动机功率</span>
         <div slot="right" class="flex-wrap row-flex box-fw">
           <div class="m-input">
-            <input type="tel" max="4" v-model="val.mgl1" 
+            <input type="tel" max="4" v-model="val.Mgl1" 
               placeholder="例：50"
               autocomplete="off">
           </div>
           <span>到</span>
           <div class="m-input">
-            <input type="tel" max="4" v-model="val.mgl2" 
+            <input type="tel" max="4" v-model="val.Mgl2" 
               placeholder="例：150"
               autocomplete="off">
           </div>
@@ -161,13 +161,13 @@
         <span slot="left">整车宽</span>
         <div slot="right" class="flex-wrap row-flex box-fw">
           <div class="m-input">
-            <input type="tel" max="4" v-model="val.carW1" 
+            <input type="tel" max="4" v-model="val.k1" 
               placeholder="例：1000"
               autocomplete="off">
           </div>
           <span>到</span>
           <div class="m-input">
-            <input type="tel" max="4" v-model="val.carW2" 
+            <input type="tel" max="4" v-model="val.k2" 
               placeholder="例：3000"
               autocomplete="off">
           </div>
@@ -177,13 +177,13 @@
         <span slot="left">整车高</span>
         <div slot="right" class="flex-wrap row-flex box-fw">
           <div class="m-input">
-            <input type="tel" max="4" v-model="val.carH1" 
+            <input type="tel" max="4" v-model="val.g1" 
               placeholder="例：1000"
               autocomplete="off">
           </div>
           <span>到</span>
           <div class="m-input">
-            <input type="tel" max="4" v-model="val.carH2" 
+            <input type="tel" max="4" v-model="val.g2" 
               placeholder="例：3000"
               autocomplete="off">
           </div>
@@ -200,6 +200,7 @@ export default {
   },
   data () {
     return {
+      oldVal: {},
       val: {
         dpxh: '',
         cpsb: '',
@@ -215,15 +216,15 @@ export default {
         rlzl: '',
         pc1: '',
         pc2: '',
-        mfdj: '',
-        carleng1: '',
-        carleng2: '',
-        mgl1: '',
-        mgl2: '',
-        carW1: '',
-        carW2: '',
-        carH1: '',
-        carH2: ''
+        Mfdj: '',
+        c1: '',
+        c2: '',
+        Mgl1: '',
+        Mgl2: '',
+        k1: '',
+        k2: '',
+        g1: '',
+        g2: ''
       }
     }
   },

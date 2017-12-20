@@ -4,7 +4,7 @@
       <div slot="left" @click="this.back">
         <yd-navbar-back-icon></yd-navbar-back-icon>
       </div>
-      <div slot="right" class="red-box">当前第345批</div>
+      <div slot="right" class="red-box" :hidden="cutTab > 0">当前第{{pc}}批</div>
     </yd-navbar>
 
     <div class="nav-tabbar flex-wrap row-flex">
@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import XHR from '@/api/service'
 import NoticeBox from '@/components/home/home'
 import ChassisBox from '@/components/home/chassis'
 import FuelBox from '@/components/home/fuel'
@@ -71,6 +72,7 @@ export default {
   },
   data () {
     return {
+      pc: 0,
       cutTab: 0,
       resets: 0,
       noticeVal: {},
@@ -79,6 +81,16 @@ export default {
       exemVal: {},
       enerVal: {}
     }
+  },
+  created () {
+    XHR.getHot().then(res => {
+      if (res.data.status === 1) {
+        this.pc = res.data.pc
+        localStorage.setItem('URL', res.data.url)
+      }
+    }).catch(err => {
+      console.log(err)
+    })
   },
   methods: {
     sub () {

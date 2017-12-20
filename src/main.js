@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import YDUI from 'vue-ydui'
 import mixins from './mixins'
-import 'vue-ydui/dist/ydui.rem.css'
+import 'vue-ydui/dist/ydui.base.css'
 import './assets/flex.css'
 import { Loading } from './components/loading/index'
 import { More } from './components/loading/more'
+
 import { NavBar, NavBarBackIcon } from 'vue-ydui/dist/lib.rem/navbar'
 import { Layout } from 'vue-ydui/dist/lib.rem/layout'
 import { Icons } from 'vue-ydui/dist/lib.rem/icons'
@@ -34,7 +34,6 @@ Vue.prototype.$dialog = {
   notify: Notify
 }
 Vue.config.productionTip = false
-Vue.use(YDUI)
 Vue.mixin(mixins)
 
 /* eslint-disable no-new */

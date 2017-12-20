@@ -6,71 +6,94 @@
       </div>
     </yd-navbar>
 
-    <div class="contnb">共有<em>2340</em>条查询结果</div>
+    <div class="contnb">共有<em>{{this.total}}</em>条查询结果</div>
 
-    <div class="bul-box">
+    <div class="bul-box" v-for="(em, index) in dbList" :key="index">
       <ul class="b-ft">
         <li class="flex-wrap row-flex">
           <div>整车型号:</div>
-          <div class="page">GDFDDF</div>
+          <div class="page">{{em.modelNumber}}</div>
         </li>
         <li class="flex-wrap row-flex">
           <div>车辆名称:</div>
-          <div class="page">汽车起重机</div>
+          <div class="page">{{em.carCategory}}</div>
         </li>
         <li class="flex-wrap row-flex">
           <div>生产企业:</div>
-          <div class="page">程力专用手机</div>
+          <div class="page">{{em.companyName}}</div>
         </li>
         <li class="flex-wrap row-flex">
           <div>批次:</div>
-          <div class="page">2016年第6册</div>
+          <div class="page">{{em.batch}}</div>
         </li>
       </ul>
     </div>
 
-    <div class="bul-box">
-      <ul class="b-ft">
-        <li class="flex-wrap row-flex">
-          <div>整车型号:</div>
-          <div class="page">GDFDDF</div>
-        </li>
-        <li class="flex-wrap row-flex">
-          <div>车辆名称:</div>
-          <div class="page">汽车起重机</div>
-        </li>
-        <li class="flex-wrap row-flex">
-          <div>生产企业:</div>
-          <div class="page">程力专用手机</div>
-        </li>
-        <li class="flex-wrap row-flex">
-          <div>批次:</div>
-          <div class="page">2016年第6册</div>
-        </li>
-      </ul>
-    </div>
-    
     <v-more :show="isMore"></v-more>
     <v-loading :show="isLod"></v-loading>
   </yd-layout>
 </template>
 
 <script>
+import XHR from '@/api/service'
 export default {
-  components: {
-
-  },
+  components: {},
   data () {
     return {
       cutTab: 0,
       isLod: false,
-      isMore: true
+      isMore: true,
+      page: 1,
+      dbList: [],
+      total: 0,
+      val: {}
     }
   },
+  created () {
+    let VAL = JSON.parse(localStorage.getItem('VAL'))
+    let newVal = {}
+    let psList = ['modelNumber', 'carType']
+    for (let em in psList) {
+      if (VAL[psList[em]]) {
+        newVal[psList[em]] = VAL[psList[em]]
+      }
+    }
+    this.val = newVal
+    this.loadList()
+  },
+  mounted () {
+    let DOM = document.getElementById('scrollView')
+    DOM.addEventListener('scroll', () => {
+      if (DOM.scrollHeight - DOM.offsetHeight - DOM.scrollTop < 14 && this.isScrl) {
+        this.loadList()
+      }
+    }, false)
+  },
   methods: {
-    sub () {
-
+    loadList () {
+      let v = this.val
+      v.page = this.page
+      this.isScrl = false
+      XHR.getNum(v).then(res => {
+        if (res.data.status === 1) {
+          if (this.isLod) {
+            this.isLod = false
+          }
+          this.dbList.push(...res.data.newData)
+          this.total = res.data.total
+          this.page++
+          if (this.page > Math.ceil(this.total / 10)) {
+            this.isScrl = false
+            this.isMore = false
+            return
+          }
+          this.isScrl = true
+        }
+      }).catch(err => {
+        console.log(err)
+      })
     },
+    sub () {},
     cuts (e) {
       this.cutTab = e
       // console.log(this.cutTab)
@@ -92,7 +115,7 @@ export default {
   background: #fff;
   position: relative;
   padding: 0.16rem 0.24rem;
-  margin-bottom: 5px;
+  margin-bottom: 0.08rem;
 }
 .bu-title{
   font-size: 0.32rem;

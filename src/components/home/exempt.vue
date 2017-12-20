@@ -28,6 +28,7 @@ export default {
   },
   data () {
     return {
+      oldVal: {},
       val: {
         modelNumber: '',
         carType: ''
