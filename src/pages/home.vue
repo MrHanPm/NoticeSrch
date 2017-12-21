@@ -86,11 +86,12 @@ export default {
     XHR.getHot().then(res => {
       if (res.data.status === 1) {
         this.pc = res.data.pc
-        localStorage.setItem('URL', res.data.url)
+        localStorage.setItem('HL', res.data.url)
       }
     }).catch(err => {
       console.log(err)
     })
+    localStorage.setItem('TB', 0)
   },
   methods: {
     sub () {
@@ -159,6 +160,7 @@ export default {
     },
     cuts (e) {
       this.cutTab = e
+      localStorage.setItem('TB', e)
     },
     reset () {
       this.resets++

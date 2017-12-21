@@ -1,114 +1,114 @@
 <template>
   <div class="tx-box">
-    <div class="tx-name">解放平头柴油自卸汽车 CA3250P66K2L2T1A1E5平头柴油自卸汽车底盘</div>
+    <div class="tx-name">底盘详细参数</div>
     <table class="x-table">
       <tr>
         <td>底盘型号</td>
-        <td>CA3250P66K2L2BT1A1E5</td>
+        <td>{{val.dpxh}}</td>
       </tr>
       <tr>
         <td>产品名称</td>
-        <td>平头柴油自卸汽车底盘</td>
+        <td>{{val.cpmc}}</td>
       </tr>
       <tr>
         <td>产品商标</td>
-        <td>解放牌</td>
+        <td>{{val.cpsb}}</td>
       </tr>
       <tr>
         <td>企业名称</td>
-        <td>中国第一汽车集团公</td>
+        <td>{{val.qymc}}</td>
       </tr>
       <tr>
         <td>企业地址</td>
-        <td>中国</td>
+        <td>{{val.qydz}}</td>
       </tr>
       <tr>
         <td>生产地址</td>
-        <td>中国中国中国</td>
+        <td>{{val.scdz}}</td>
       </tr>
       <tr>
         <td>批次</td>
-        <td>中国中国中国</td>
+        <td>{{val.pc}}</td>
       </tr>
       <tr>
         <td>目录序号</td>
-        <td>中国中国中国</td>
+        <td>{{val.mlxh}}</td>
       </tr>
       <tr>
         <td>规格</td>
-        <td>中国中国中国</td>
+        <td>{{val.ltgg}}</td>
       </tr>
       <tr>
         <td>燃油类型</td>
-        <td>中国中国中国</td>
+        <td>{{val.rlzl}}</td>
       </tr>
       <tr>
         <td>转向形式</td>
-        <td>中国中国中国</td>
+        <td>{{val.zxxs}}</td>
       </tr>
       <tr>
         <td>前排乘客</td>
-        <td>中国中国中国</td>
+        <td>{{val.zxxs}}</td>
       </tr>
       <tr>
         <td>轴数</td>
-        <td>中国中国中国</td>
+        <td>{{val.zs}}</td>
       </tr>
       <tr>
         <td>轴距</td>
-        <td>中中国</td>
+        <td>{{val.zj}}</td>
       </tr>
       <tr>
         <td>弹簧片数</td>
-        <td>中中国</td>
+        <td>{{val.dhps}}</td>
       </tr>
       <tr>
         <td>轮胎数</td>
-        <td>中中国</td>
+        <td>{{val.lts}}</td>
       </tr>
       <tr>
         <td>轮胎规格</td>
-        <td>中中国</td>
+        <td>{{val.ltgg}}</td>
       </tr>
       <tr>
         <td>总质量</td>
-        <td>中中国</td>
+        <td>{{val.zzl}}</td>
       </tr>
       <tr>
         <td>整备质量</td>
-        <td>中中国</td>
+        <td>{{val.zbzl}}</td>
       </tr>
       <tr>
         <td>挂车质量</td>
-        <td>中中国</td>
+        <td>{{val.gczl}}</td>
       </tr>
       <tr>
         <td>半挂鞍座</td>
-        <td>中中国</td>
+        <td>{{val.bgaz}}</td>
       </tr>
       <tr>
         <td>轮距</td>
-        <td>中中国</td>
+        <td>{{val.zj}}</td>
       </tr>
       <tr>
         <td>前悬后悬</td>
-        <td>中中国</td>
+        <td>{{val.qxhx}}</td>
       </tr>
       <tr>
         <td>接近离去角</td>
-        <td>中中国</td>
+        <td>{{val.jjlqj}}</td>
       </tr>
       <tr>
         <td>最高车速</td>
-        <td>中中国</td>
+        <td>{{val.zgcs}}</td>
       </tr>
       <tr>
         <td>依据标准</td>
-        <td>中中国</td>
+        <td>{{val.yjbz}}</td>
       </tr>
       <tr>
         <td>识别代码</td>
-        <td>LFNKRXPP××××××</td>
+        <td>{{val.sbdh}}</td>
       </tr>
     </table>
     <table class="th-table">
@@ -118,24 +118,23 @@
         <th>功率(kw)</th>
         <th class="w">发动机生产企业</th>
       </tr>
-      <tr>
-        <td>外形尺寸</td>
-        <td>外形尺寸</td>
-        <td><div>erer</div></td>
-        <td><div>erer</div></td>
+      <tr v-for="(em, inx) in tbl" :key="inx">
+        <td>{{em[0]}}</td>
+        <td>{{em[1]}}</td>
+        <td><div>{{em[2]}}</div></td>
+        <td><div>{{em[3]}}</div></td>
       </tr>
     </table>
     <div class="tx-name">其他</div>
-    <div class="txt-box">对方咕咚咕咚复古的风格的歌如果冻分割肉规范个人各个地方</div>
+    <div class="txt-box">{{val.qt}}</div>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      xhVal: ''
-    }
+  props: {
+    val: Object,
+    tbl: Array
   }
 }
 </script>

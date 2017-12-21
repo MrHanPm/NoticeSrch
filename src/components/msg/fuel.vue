@@ -9,16 +9,12 @@
         <td>产品名称</td>
         <td>企业名称</td>
       </tr>
-      <tr>
-        <td rowspan="2">DFDJK34344</td>
-        <td>配置1</td>
-        <td>209</td>
-        <td>水电费水电费</td>
-      </tr>
-      <tr @click.stop="goMsg">
-        <td>配置1</td>
-        <td>209</td>
-        <td>水电费水电费</td>
+      <tr v-for="(em, inx) in val" :key="inx"
+        @click.stop="toRan(em.url, '/detail')">
+        <td v-if="inx === 0" :rowspan="val.length">{{tbl}}</td>
+        <td>配置{{inx + 1}}</td>
+        <td>{{em.proName}}</td>
+        <td>{{em.company}}</td>
       </tr>
     </table>
 
@@ -27,14 +23,14 @@
 
 <script>
 export default {
-  data () {
-    return {
-      xhVal: ''
-    }
+  props: {
+    val: Array,
+    tbl: String
   },
   methods: {
-    goMsg () {
-      this.jump('/detail')
+    toRan (url, to) {
+      localStorage.setItem('RYL', url)
+      this.jump(to)
     }
   }
 }

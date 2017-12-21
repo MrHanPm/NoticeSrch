@@ -8,7 +8,8 @@
 
     <div class="contnb">共有<em>{{this.total}}</em>条查询结果</div>
 
-    <div class="bul-box" v-for="(em, index) in dbList" :key="index">
+    <div class="bul-box" v-for="(em, index) in dbList"
+      :key="index" @click.stop="toRan(em.url, '/detail')">
       <div class="bu-title">{{em.title}}</div>
       <ul class="b-ft">
         <li class="flex-wrap row-flex">
@@ -46,7 +47,7 @@ export default {
   data () {
     return {
       cutTab: 0,
-      isLod: false,
+      isLod: true,
       isMore: true,
       page: 1,
       dbList: [],
@@ -97,6 +98,10 @@ export default {
       }).catch(err => {
         console.log(err)
       })
+    },
+    toRan (url, to) {
+      localStorage.setItem('RYL', url)
+      this.jump(to)
     },
     sub () {},
     cuts (e) {

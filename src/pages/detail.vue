@@ -1,12 +1,11 @@
 <template>
   <yd-layout>
-    <yd-navbar slot="navbar" title="公告号查询详情" color="#333" fontsize=".36rem">
+    <yd-navbar slot="navbar" title="燃油查询详情" color="#333" fontsize=".36rem">
       <div slot="left" @click="this.back">
         <yd-navbar-back-icon></yd-navbar-back-icon>
       </div>
     </yd-navbar>
-
-    <yd-slider autoplay="5000">
+    <!-- <yd-slider autoplay="5000">
       <yd-slider-item>
         <img src="http://static.ydcss.com/uploads/ydui/1.jpg">
       </yd-slider-item>
@@ -16,7 +15,7 @@
       <yd-slider-item>
         <img src="http://static.ydcss.com/uploads/ydui/3.jpg">
       </yd-slider-item>
-    </yd-slider>
+    </yd-slider> -->
     <div class="m-name">CA5250XXYP63K43 解放厢式运输车</div>
     
     <div>
@@ -56,35 +55,33 @@
         </tr>
       </table>
     </div>
-    
+    <v-loading :show="isLod"></v-loading>
   </yd-layout>
 </template>
 
 <script>
-
+import XHR from '@/api/service'
 export default {
-  components: {
-
-  },
+  components: {},
   data () {
     return {
-      cutTab: 0
+      isLod: true,
+      data: {},
+      fullCost: []
     }
   },
+  created () {
+    let RYL = localStorage.getItem('RYL')
+    XHR.getMsg(RYL).then(res => {
+      if (res.data.status === 1) {
+        // this.isLod = false
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+  },
   methods: {
-    sub () {
-      this.$dialog.notify({
-        mes: '5秒后自动消失，点我也可以消失！',
-        timeout: 3000,
-        callback: () => {
-          console.log('我走咯！')
-        }
-      })
-    },
-    cuts (e) {
-      this.cutTab = e
-      // console.log(this.cutTab)
-    }
+
   }
 }
 </script>

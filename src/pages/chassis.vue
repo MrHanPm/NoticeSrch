@@ -8,7 +8,8 @@
 
     <div class="contnb">共有<em>{{this.total}}</em>条查询结果</div>
 
-    <div class="bul-box" v-for="(em, index) in dbList" :key="index">
+    <div class="bul-box" v-for="(em, index) in dbList"
+      :key="index" @click.stop="toMsg(em.url, '/msgs')">
       <div class="bu-title">{{em.title}}</div>
       <ul class="b-ft">
         <li class="flex-wrap row-flex">
@@ -50,7 +51,7 @@ export default {
   data () {
     return {
       cutTab: 0,
-      isLod: false,
+      isLod: true,
       isMore: true,
       isScrl: true,
 

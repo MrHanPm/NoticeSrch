@@ -8,7 +8,7 @@
 
     <div class="contnb">共有<em>{{this.total}}</em>条查询结果</div>
     <div class="bul-box" v-for="(em, index) in dbList" :key="index"
-    @click.stop="goMsg">
+    @click.stop="toMsg(em.url, '/msgs')">
       <div class="bu-title">{{em.title}}</div>
       <div class="flex-wrap row-flex b-box">
         <div class="b-img">
@@ -104,9 +104,6 @@ export default {
     cuts (e) {
       this.cutTab = e
       // console.log(this.cutTab)
-    },
-    goMsg () {
-      this.jump('/msgs')
     }
   }
 }

@@ -34,7 +34,7 @@
         <div>目录序号:</div>
         <div class="page">
           <em>{{em.dirNumber}}</em>
-          <em class="w">查看公告 ></em>
+          <em v-if="em.url" class="w" @click.stop="toMsg(em.url, '/msgs')">查看公告 ></em>
         </div>
       </li>
     </ul>
@@ -51,7 +51,7 @@ export default {
   data () {
     return {
       cutTab: 0,
-      isLod: false,
+      isLod: true,
       isMore: true,
       page: 1,
       dbList: [],

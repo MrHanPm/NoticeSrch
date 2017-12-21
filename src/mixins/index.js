@@ -7,6 +7,10 @@ export default {
       if (this.$router) {
         this.$router.back()
       }
+    },
+    toMsg (url, to) {
+      localStorage.setItem('URL', url)
+      this.jump(to)
     }
   }
 }

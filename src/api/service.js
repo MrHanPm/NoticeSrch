@@ -73,6 +73,10 @@ class XHR {
       { params: json }
     )
   }
+  // 获取详情数据
+  getMsg (urls) {
+    return axios.get(`${HTTP}${urls}`)
+  }
 }
 
 // 实例化后再导出

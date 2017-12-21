@@ -6,31 +6,31 @@
       </div>
     </yd-navbar>
 
-    <yd-slider autoplay="5000">
-      <yd-slider-item>
-        <img src="http://static.ydcss.com/uploads/ydui/1.jpg">
-      </yd-slider-item>
-      <yd-slider-item>
-        <img src="http://static.ydcss.com/uploads/ydui/2.jpg">
-      </yd-slider-item>
-      <yd-slider-item>
-        <img src="http://static.ydcss.com/uploads/ydui/3.jpg">
+    <yd-slider v-if="isSlider" autoplay="5000">
+      <yd-slider-item v-for="(em, index) in picture" :key="index">
+        <img :src="em">
       </yd-slider-item>
     </yd-slider>
-    <div class="m-name">CA5250XXYP63K43 解放厢式运输车</div>
+    <div class="m-name">{{zcDetail.title}}</div>
     <div class="flex-wrap row-flex tab-box">
-      <div :class="{'active': cutTab === 0 }" @click.stop="cuts(0)">整车参数详情</div>
-      <div :class="{'active': cutTab === 1 }" @click.stop="cuts(1)">底盘参数</div>
-      <div :class="{'active': cutTab === 2 }" @click.stop="cuts(2)">燃油</div>
+      <div :class="{'active': cutTab === 0 }"
+        @click.stop="cuts(0)">整车参数详情</div>
+      <div :class="{'active': cutTab === 1 }"
+        v-if="dpDetail"
+        @click.stop="cuts(1)">底盘参数</div>
+      <div :class="{'active': cutTab === 2 }"
+        v-if="ranYouDetail"
+        @click.stop="cuts(2)">燃油</div>
     </div>
-    <vehicle-box v-if="cutTab === 0"></vehicle-box>
-    <chassis-box v-if="cutTab === 1"></chassis-box>
-    <fuel-box v-if="cutTab === 2"></fuel-box>
+    <vehicle-box v-if="cutTab === 0" :val="zcDetail" :tbl="zcEngine"></vehicle-box>
+    <chassis-box v-if="cutTab === 1" :val="dpDetail" :tbl="dpEngine"></chassis-box>
+    <fuel-box v-if="cutTab === 2" :val="ranYouDetail" :tbl="zcDetail.model"></fuel-box>
     <v-loading :show="isLod"></v-loading>
   </yd-layout>
 </template>
 
 <script>
+import XHR from '@/api/service'
 import VehicleBox from '@/components/msg/vehicle'
 import ChassisBox from '@/components/msg/chassis'
 import FuelBox from '@/components/msg/fuel'
@@ -44,19 +44,45 @@ export default {
   data () {
     return {
       cutTab: 0,
-      isLod: false
+      isSlider: false,
+      isLod: true,
+
+      zcDetail: {},       // 整车参数部分
+      picture: [],        // 图片部分
+      zcEngine: [],       // 整车发动机模块
+      ranYouDetail: {},   // 燃油模块
+      dpDetail: {},       // 底盘模块详情参数
+      dpEngine: []       // 底盘发动机模块
     }
   },
-  methods: {
-    sub () {
-      this.$dialog.notify({
-        mes: '5秒后自动消失，点我也可以消失！',
-        timeout: 3000,
-        callback: () => {
-          console.log('我走咯！')
+  created () {
+    let URL = localStorage.getItem('URL')
+    let TB = localStorage.getItem('TB')
+    XHR.getMsg(URL).then(res => {
+      if (res.data.status === 1) {
+        switch (TB) {
+          case 1:
+            this.zcEngine = false
+            this.ranYouDetail = false
+            this.dpDetail = res.data.data
+            break
+          default:
+            this.zcDetail = res.data.zcDetail
+            this.picture = res.data.picture
+            this.zcEngine = res.data.zcEngine
+            this.ranYouDetail = res.data.ranYouDetail
+            this.dpDetail = res.data.dpDetail
+            this.dpEngine = res.data.dpEngine
+            this.isSlider = true
+            break
         }
-      })
-    },
+        this.isLod = false
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+  },
+  methods: {
     cuts (e) {
       this.cutTab = e
       // console.log(this.cutTab)
@@ -98,5 +124,8 @@ export default {
 }
 .tab-box div:last-child{
   border-right:0;
+}
+.slider-item img{
+  width: 100%;
 }
 </style>
