@@ -11,6 +11,15 @@ export default {
     toMsg (url, to) {
       localStorage.setItem('URL', url)
       this.jump(to)
+    },
+    noData () {
+      this.$dialog.notify({
+        mes: '查询无结果',
+        timeout: 2000,
+        callback: () => {
+          this.$router.back()
+        }
+      })
     }
   }
 }

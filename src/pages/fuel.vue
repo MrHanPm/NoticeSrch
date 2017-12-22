@@ -94,6 +94,8 @@ export default {
             return
           }
           this.isScrl = true
+        } else {
+          this.noData()
         }
       }).catch(err => {
         console.log(err)

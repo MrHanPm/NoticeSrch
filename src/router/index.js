@@ -8,6 +8,7 @@ import Chassis from '@/pages/chassis'
 import Fuel from '@/pages/fuel'
 import Exempt from '@/pages/exempt'
 import Energy from '@/pages/energy'
+import Dipan from '@/pages/dipan'
 
 Vue.use(Router)
 
@@ -27,6 +28,11 @@ export default new Router({
       path: '/detail',
       name: 'Detail', // 最终燃油详情页
       component: Detail
+    },
+    {
+      path: '/dipan',
+      name: 'Dipan', // 底盘详情页
+      component: Dipan
     },
     {
       path: '/bulletin',

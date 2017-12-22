@@ -5,29 +5,94 @@
         <yd-navbar-back-icon></yd-navbar-back-icon>
       </div>
     </yd-navbar>
-    <!-- <yd-slider autoplay="5000">
-      <yd-slider-item>
-        <img src="http://static.ydcss.com/uploads/ydui/1.jpg">
-      </yd-slider-item>
-      <yd-slider-item>
-        <img src="http://static.ydcss.com/uploads/ydui/2.jpg">
-      </yd-slider-item>
-      <yd-slider-item>
-        <img src="http://static.ydcss.com/uploads/ydui/3.jpg">
-      </yd-slider-item>
-    </yd-slider> -->
-    <div class="m-name">CA5250XXYP63K43 解放厢式运输车</div>
-    
+
     <div>
+      <div class="tx-name">燃油公告参数</div>
+      <table class="x-table">
+        <tr>
+          <td>企业名称</td>
+          <td>{{data.extend.company}}</td>
+        </tr>
+        <tr>
+          <td>产品名称</td>
+          <td>{{data.extend.proname}}</td>
+        </tr>
+        <tr>
+          <td>产品型号</td>
+          <td>{{data.extend.promodel}}</td>
+        </tr>
+      </table>
+      <div class="tx-name">整车参数</div>
+      <table class="x-table">
+        <tr>
+          <td>外形尺寸(长×宽×高)mm</td>
+          <td>{{data.shapesize}}</td>
+        </tr>
+        <tr>
+          <td>货箱栏板尺寸(长×宽×高 mm)或容积</td>
+          <td>{{data.innersize}}</td>
+        </tr>
+        <tr>
+          <td>整备质量(Kg)</td>
+          <td>{{data.zbweight}}</td>
+        </tr>
+        <tr>
+          <td>总质量(Kg)</td>
+          <td>{{data.weight}}</td>
+        </tr>
+        <tr>
+          <td>驱动形式</td>
+          <td>{{data.drivermodel}}</td>
+        </tr>
+      </table>
+      <div class="tx-name">底盘配置与技术参数</div>
+      <table class="x-table">
+        <tr>
+          <td>底盘生产企业</td>
+          <td>{{data.pancompany}}</td>
+        </tr>
+        <tr>
+          <td>底盘型号</td>
+          <td>{{data.panmodel}}</td>
+        </tr>
+        <tr>
+          <td>发动机生产企业</td>
+          <td>{{data.enginecompany}}</td>
+        </tr>
+        <tr>
+          <td>发动机型号</td>
+          <td>{{data.enginemodel}}</td>
+        </tr>
+        <tr>
+          <td>变速器型号</td>
+          <td>{{data.bsqmodel}}</td>
+        </tr>
+        <tr>
+          <td>轮胎规格型号</td>
+          <td>{{data.tyremodel}}</td>
+        </tr>
+        <tr>
+          <td>主减速器速比(驱动桥速比)</td>
+          <td>{{data.jsqrate}}</td>
+        </tr>
+        <tr>
+          <td>综合燃料消耗量L/100km</td>
+          <td>{{data.avecost}}</td>
+        </tr>
+        <tr>
+          <td>60km/h空载等速燃料消耗量L/100km</td>
+          <td>{{data.emptycost}}</td>
+        </tr>
+      </table>
       <div class="tx-name">燃料消耗量参数表</div>
       <table class="x-table">
         <tr>
           <td>产品型号</td>
-          <td>厢式运输车</td>
+          <td></td>
         </tr>
         <tr>
           <td>执行标准</td>
-          <td>DFJI3434DGJ3434JK</td>
+          <td>{{data.prostd}}</td>
         </tr>
       </table>
 
@@ -41,17 +106,17 @@
           <td>车速 km/h</td>
           <td>油耗 L/100km</td>
         </tr>
-        <tr>
-          <td>30</td>
-          <td>--</td>
-          <td>--</td>
+        <tr v-for="(em, inx) in fullCost[0]" :key="inx">
+          <td>{{em}}</td>
+          <td>{{fullCost[1][inx]}}</td>
+          <td>{{fullCost[2][inx]}}</td>
         </tr>
       </table>
 
       <table class="x-table">
         <tr style="background:#fff;">
           <td>燃油消耗量达标车型编号</td>
-          <td>厢式运输车</td>
+          <td>{{data.prosn}}</td>
         </tr>
       </table>
     </div>
@@ -66,7 +131,9 @@ export default {
   data () {
     return {
       isLod: true,
-      data: {},
+      data: {
+        extend: {}
+      },
       fullCost: []
     }
   },
@@ -74,7 +141,15 @@ export default {
     let RYL = localStorage.getItem('RYL')
     XHR.getMsg(RYL).then(res => {
       if (res.data.status === 1) {
-        // this.isLod = false
+        this.isLod = false
+        this.data = res.data.data
+        this.fullCost = res.data.fullCost
+      } else {
+        this.$dialog.notify({
+          mes: '请求数据异常',
+          timeout: 3000,
+          callback: () => {}
+        })
       }
     }).catch(err => {
       console.log(err)

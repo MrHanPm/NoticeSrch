@@ -3,8 +3,8 @@
     <yd-cell-group>
       <yd-cell-item>
         <span slot="left">示例公告</span>
-        <span slot="right" class="shili">
-          CA1454545 >>
+        <span slot="right" class="shili" @click.stop="toMsg(url, '/msgs')">
+          CA100P40K2L1E5A84 >>
         </span>
       </yd-cell-item>
       <yd-cell-item>
@@ -83,9 +83,8 @@
         <span slot="left">排放标准</span>
         <select slot="right" v-model="val.pfstd">
           <option value="">请选择</option>
-          <option value="1">男</option>
-          <option value="2">女</option>
-          <option value="3">未知</option>
+          <option value="国Ⅴ">国Ⅴ,五</option>
+          <option value="国Ⅳ">国IV,四</option>
         </select>
       </yd-cell-item>
       <yd-cell-item>
@@ -306,7 +305,8 @@
 <script>
 export default {
   props: {
-    ret: Number
+    ret: Number,
+    url: String
   },
   data () {
     return {
@@ -410,4 +410,5 @@ export default {
   left: 0;
   top: 0.32rem;
 }
+.cell-right select{ color: #555;}
 </style>

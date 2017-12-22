@@ -161,7 +161,7 @@
         <th>功率(kw)</th>
         <th class="w">发动机生产企业</th>
       </tr>
-      <tr v-for="(em, inx) in tbl" :key="inx">
+      <tr v-if="tbl" v-for="(em, inx) in tbl" :key="inx">
         <td>{{em[0]}}</td>
         <td>{{em[1]}}</td>
         <td><div>{{em[2]}}</div></td>
@@ -177,7 +177,10 @@
 export default {
   props: {
     val: Object,
-    tbl: Array
+    tbl: {
+      type: [Array, Boolean],
+      default: []
+    }
   }
 }
 </script>

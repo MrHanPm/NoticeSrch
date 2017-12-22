@@ -1,6 +1,6 @@
 <template>
   <yd-layout>
-    <yd-navbar slot="navbar" title="公告号查询" color="#333" fontsize=".36rem">
+    <yd-navbar slot="navbar" :title="navTit" color="#333" fontsize=".36rem">
       <div slot="left" @click="this.back">
         <yd-navbar-back-icon></yd-navbar-back-icon>
       </div>
@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <notice-box v-if="cutTab === 0" :ret="resets"
+    <notice-box v-if="cutTab === 0" :ret="resets" :url="url"
       @setVal="setVals"></notice-box>
     <chassis-box v-if="cutTab === 1" :ret="resets"
       @setVal="setVals"></chassis-box>
@@ -72,7 +72,9 @@ export default {
   },
   data () {
     return {
+      navTit: '公告号查询',
       pc: 0,
+      url: '',
       cutTab: 0,
       resets: 0,
       noticeVal: {},
@@ -86,12 +88,18 @@ export default {
     XHR.getHot().then(res => {
       if (res.data.status === 1) {
         this.pc = res.data.pc
+        this.url = res.data.url
         localStorage.setItem('HL', res.data.url)
+      } else {
+        this.$dialog.notify({
+          mes: '批次获取失败',
+          timeout: 3000,
+          callback: () => {}
+        })
       }
     }).catch(err => {
       console.log(err)
     })
-    localStorage.setItem('TB', 0)
   },
   methods: {
     sub () {
@@ -101,30 +109,55 @@ export default {
             localStorage.setItem('VAL', JSON.stringify(this.noticeVal))
             this.jump('/bulletin')
           }
+          window.Truckhome_events({
+            Category: '公告号查询',
+            Action: '点击公告查询',
+            Label: JSON.stringify(this.noticeVal)
+          })
           break
         case 1:
           if (this.forVal(this.chassVal)) {
             localStorage.setItem('VAL', JSON.stringify(this.chassVal))
             this.jump('/chassis')
           }
+          window.Truckhome_events({
+            Category: '公告号查询',
+            Action: '点击底盘查询',
+            Label: JSON.stringify(this.chassVal)
+          })
           break
         case 2:
           if (this.forVal(this.fuelVal)) {
             localStorage.setItem('VAL', JSON.stringify(this.fuelVal))
             this.jump('/fuel')
           }
+          window.Truckhome_events({
+            Category: '公告号查询',
+            Action: '点击燃油查询',
+            Label: JSON.stringify(this.fuelVal)
+          })
           break
         case 3:
           if (this.forVal(this.exemVal)) {
             localStorage.setItem('VAL', JSON.stringify(this.exemVal))
             this.jump('/exempt')
           }
+          window.Truckhome_events({
+            Category: '公告号查询',
+            Action: '点击免征查询',
+            Label: JSON.stringify(this.exemVal)
+          })
           break
         default:
           if (this.forVal(this.enerVal)) {
             localStorage.setItem('VAL', JSON.stringify(this.enerVal))
             this.jump('/energy')
           }
+          window.Truckhome_events({
+            Category: '公告号查询',
+            Action: '点击新能源查询',
+            Label: JSON.stringify(this.enerVal)
+          })
       }
     },
     setVals (val) {
@@ -160,7 +193,23 @@ export default {
     },
     cuts (e) {
       this.cutTab = e
-      localStorage.setItem('TB', e)
+      switch (e) {
+        case 0:
+          this.navTit = '公告号查询'
+          break
+        case 1:
+          this.navTit = '底盘公告查询'
+          break
+        case 2:
+          this.navTit = '燃油公告查询'
+          break
+        case 3:
+          this.navTit = '免征公告查询'
+          break
+        default:
+          this.navTit = '新能源查询'
+          break
+      }
     },
     reset () {
       this.resets++

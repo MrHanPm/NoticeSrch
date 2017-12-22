@@ -9,7 +9,7 @@
     <div class="contnb">共有<em>{{this.total}}</em>条查询结果</div>
 
     <div class="bul-box" v-for="(em, index) in dbList"
-      :key="index" @click.stop="toMsg(em.url, '/msgs')">
+      :key="index" @click.stop="toMsg(em.url, '/dipan')">
       <div class="bu-title">{{em.title}}</div>
       <ul class="b-ft">
         <li class="flex-wrap row-flex">
@@ -108,6 +108,8 @@ export default {
             return
           }
           this.isScrl = true
+        } else {
+          this.noData()
         }
       }).catch(err => {
         console.log(err)

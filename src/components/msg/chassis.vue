@@ -111,7 +111,7 @@
         <td>{{val.sbdh}}</td>
       </tr>
     </table>
-    <table class="th-table">
+    <table v-if="tbl.length > 0" class="th-table">
       <tr>
         <th>发动机型号</th>
         <th>排量(ml)</th>

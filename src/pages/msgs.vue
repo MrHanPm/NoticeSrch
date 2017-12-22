@@ -11,9 +11,10 @@
         <img :src="em">
       </yd-slider-item>
     </yd-slider>
-    <div class="m-name">{{zcDetail.title}}</div>
+    <div v-if="zcDetail.title" class="m-name">{{zcDetail.title}}</div>
     <div class="flex-wrap row-flex tab-box">
       <div :class="{'active': cutTab === 0 }"
+        v-if="zcEngine"
         @click.stop="cuts(0)">整车参数详情</div>
       <div :class="{'active': cutTab === 1 }"
         v-if="dpDetail"
@@ -57,26 +58,22 @@ export default {
   },
   created () {
     let URL = localStorage.getItem('URL')
-    let TB = localStorage.getItem('TB')
     XHR.getMsg(URL).then(res => {
       if (res.data.status === 1) {
-        switch (TB) {
-          case 1:
-            this.zcEngine = false
-            this.ranYouDetail = false
-            this.dpDetail = res.data.data
-            break
-          default:
-            this.zcDetail = res.data.zcDetail
-            this.picture = res.data.picture
-            this.zcEngine = res.data.zcEngine
-            this.ranYouDetail = res.data.ranYouDetail
-            this.dpDetail = res.data.dpDetail
-            this.dpEngine = res.data.dpEngine
-            this.isSlider = true
-            break
-        }
+        this.zcDetail = res.data.zcDetail
+        this.picture = res.data.picture
+        this.zcEngine = res.data.zcEngine
+        this.ranYouDetail = res.data.ranYouDetail
+        this.dpDetail = res.data.dpDetail
+        this.dpEngine = res.data.dpEngine
+        this.isSlider = true
         this.isLod = false
+      } else {
+        this.$dialog.notify({
+          mes: '请求数据异常',
+          timeout: 3000,
+          callback: () => {}
+        })
       }
     }).catch(err => {
       console.log(err)
