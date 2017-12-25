@@ -155,17 +155,16 @@ export default {
   tr{
     width:100%;
     display: block;
-    min-height: 0.8rem;
-    line-height: 0.8rem;
     background: #fff;
     vertical-align: middle;
     font-size: 0.28rem;
+    border-bottom:0.02rem solid #eaeaea;
     td{
       table-layout: auto;
       padding-left: 5px;
+      height: 0.8rem;
       word-break: break-all;
       border-right: 0.02rem solid #eaeaea;
-      border-bottom:0.02rem solid #eaeaea;
     }
     td:first-child{
       width: 1.9rem;
@@ -186,40 +185,17 @@ export default {
   th{background:#f6f6f6;width: 22%;border-right: 0.02rem solid #eaeaea;}
   tr{
     width:100%;
-    min-height: 0.8rem;
-    line-height: 0.8rem;
     background: #fff;
     vertical-align: middle;
     font-size: 0.28rem;
+    border-bottom:0.02rem solid #eaeaea;
   }
   td{
+    height: 0.8rem;
     border-right: 0.02rem solid #eaeaea;
-    border-bottom:0.02rem solid #eaeaea;
   }
   td:last-child{border-right:0;}
   .w{width: 44%;}
-}
-.d-table{
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-  tr{
-    width: 100%;
-    min-height: 0.8rem;
-    line-height: 0.8rem;
-    vertical-align: middle;
-    background: #fff;
-  }
-  td{
-    min-height: 0.8rem;
-    border-right:0.02rem solid #eaeaea;
-    border-bottom:0.02rem solid #eaeaea;
-  }
-  td:last-child{border-right:0;}
-  .w{background:#f6f6f6;}
-}
-.d-table tr:nth-child(even){
-  background:#f6f6f6;
 }
 .txt-box{
   width: 100%;

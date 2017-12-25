@@ -2,11 +2,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import mixins from './mixins'
-import 'vue-ydui/dist/ydui.base.css'
-import './assets/flex.css'
 import { Loading } from './components/loading/index'
 import { More } from './components/loading/more'
-
 import { NavBar, NavBarBackIcon } from 'vue-ydui/dist/lib.rem/navbar'
 import { Layout } from 'vue-ydui/dist/lib.rem/layout'
 import { Icons } from 'vue-ydui/dist/lib.rem/icons'
@@ -15,6 +12,10 @@ import { Toast, Notify } from 'vue-ydui/dist/lib.rem/dialog'
 import { CellGroup, CellItem } from 'vue-ydui/dist/lib.rem/cell'
 import { Input } from 'vue-ydui/dist/lib.rem/input'
 import { Slider, SliderItem } from 'vue-ydui/dist/lib.rem/slider'
+
+import 'vue-ydui/dist/ydui.base.css'
+import './assets/flex.css'
+import './assets/com.less'
 Vue.component(NavBar.name, NavBar)
 Vue.component(NavBarBackIcon.name, NavBarBackIcon)
 Vue.component(Layout.name, Layout)

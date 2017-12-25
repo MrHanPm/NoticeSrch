@@ -210,17 +210,16 @@ export default {
   tr{
     width:100%;
     display: block;
-    min-height: 0.8rem;
-    line-height: 0.8rem;
     background: #fff;
     vertical-align: middle;
     font-size: 0.28rem;
+    border-bottom:0.02rem solid #eaeaea;
     td{
       table-layout: auto;
       padding-left: 5px;
       word-break: break-all;
       border-right: 0.02rem solid #eaeaea;
-      border-bottom:0.02rem solid #eaeaea;
+      height: 0.8rem;
     }
     td:first-child{
       width: 1.9rem;
@@ -228,7 +227,6 @@ export default {
       text-align: center;
     }
     td:last-child{border-right:0;}
-    div{ line-height: 0.36rem;}
   }
 }
 .x-table tr:nth-child(odd){
@@ -240,15 +238,13 @@ export default {
   text-align: center;
   tr{
     width: 100%;
-    min-height: 0.8rem;
-    line-height: 0.8rem;
     vertical-align: middle;
     background: #fff;
+    border-bottom:0.02rem solid #eaeaea;
   }
   td{
-    min-height: 0.8rem;
+    height: 0.8rem;
     border-right:0.02rem solid #eaeaea;
-    border-bottom:0.02rem solid #eaeaea;
   }
   td:last-child{border-right:0;}
   .w{background:#f6f6f6;}

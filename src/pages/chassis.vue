@@ -66,16 +66,20 @@ export default {
     let newVal = {}
     let psList = ['dpxh', 'cpsb', 'cpmc', 'zs', 'pfsp', 'rlzl', 'Mfdj']
     let psList2 = ['zbzl', 'zzl', 'zj', 'pc', 'c', 'Mgl', 'k', 'g']
-    for (let em in psList) {
-      if (VAL[psList[em]]) {
-        newVal[psList[em]] = VAL[psList[em]]
+    if (this.$route.query.v) {
+      newVal.dpxh = this.$route.query.v
+    } else {
+      for (let em in psList) {
+        if (VAL[psList[em]]) {
+          newVal[psList[em]] = VAL[psList[em]]
+        }
       }
-    }
-    for (let em in psList2) {
-      let v1 = `${psList2[em]}1`
-      let v2 = `${psList2[em]}2`
-      if (`${VAL[v1]},${VAL[v2]}` !== ',') {
-        newVal[psList2[em]] = `${VAL[v1]},${VAL[v2]}`
+      for (let em in psList2) {
+        let v1 = `${psList2[em]}1`
+        let v2 = `${psList2[em]}2`
+        if (`${VAL[v1]},${VAL[v2]}` !== ',') {
+          newVal[psList2[em]] = `${VAL[v1]},${VAL[v2]}`
+        }
       }
     }
     this.val = newVal

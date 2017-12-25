@@ -52,15 +52,13 @@ export default {
   font-size: 0.28rem;
   tr{
     width: 100%;
-    min-height: 0.8rem;
-    line-height: 0.8rem;
     vertical-align: middle;
     background: #fff;
+    border-bottom:0.02rem solid #eaeaea;
   }
   td{
-    min-height: 0.8rem;
+    height: 0.8rem;
     border-right:0.02rem solid #eaeaea;
-    border-bottom:0.02rem solid #eaeaea;
   }
   td:last-child{border-right:0;}
   .w{background:#f6f6f6;}
