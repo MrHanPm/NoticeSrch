@@ -148,10 +148,10 @@ export default {
   top: 50%;
   right: 0.25rem;
   display: block;
-  font-family: YDUI-INLAY;
+  font-family: 'YDUI';
   font-size: .34rem;
   color: #c9c9c9;
-  content: "\E608";
+  content: "\E620";
 }
 .bu-title{
   font-size: 0.32rem;

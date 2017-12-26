@@ -182,7 +182,7 @@ export default {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
-  th{background:#f6f6f6;width: 22%;border-right: 0.02rem solid #eaeaea;}
+  th{background:#f6f6f6;width: 22%;border-right: 0.02rem solid #eaeaea;height: 0.8rem;}
   tr{
     width:100%;
     background: #fff;

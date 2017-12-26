@@ -1,6 +1,6 @@
 /* Reset */
 ::-webkit-scrollbar {display: none;}
-.mt10{margin-top: 10px;}
+.mt10{margin-top: 0.2rem;}
 /** 水平伸缩容器**/
 .row-flex{-moz-box-orient: horizontal;-webkit-box-orient: horizontal;-moz-box-direction: normal;-webkit-box-direction: normal;-moz-box-lines: multiple;-webkit-box-lines: multiple;-ms-flex-flow: row wrap;-webkit-flex-flow: row wrap;flex-flow: row wrap;
 }
@@ -53,22 +53,22 @@
 .jump-cover{position: fixed;left:0;top:0;width: 100%;height:100%;z-index: 1001;background: #f5f5f5;}
 .jump-cover .loading{position: absolute;margin:0;left:50%;top:50%;-webkit-transform: translate3d(-50%,-50%,0);transform: translate3d(-50%,-50%,0);}
 
-.loading{display: none;position: relative;margin:8px auto 5px;width:85px;padding-top: 33px;font-size: 0;color: #999; overflow: hidden; text-align: center; 
+.loading{display: none;position: relative;margin:0.16rem auto 0.1rem;width:1.8rem;padding-top: 0.66rem;font-size: 0;color: #999; overflow: hidden; text-align: center; 
     background: url(./loadBg.png) no-repeat 50% 0;
-    -webkit-background-size: 192px 30px;background-size: 192px 30px;-webkit-animation: loaing-animation linear 1.5s infinite; animation: loaing-animation linear 1.5s infinite;}
-.loading:before{content: '';position: absolute;left: 0;top: 0;width: 100%;height: 30px;
+    -webkit-background-size: 3.84rem 0.6rem;background-size: 3.84rem 0.6rem;-webkit-animation: loaing-animation linear 1.5s infinite; animation: loaing-animation linear 1.5s infinite;}
+.loading:before{content: '';position: absolute;left: 0;top: 0;width: 100%;height: 0.6rem;
 background: -webkit-gradient(linear, 0 0, 100% 0,from(#f5f5f5), color-stop(0.1, rgba(245,245,245,0)), color-stop(0.9, rgba(245,245,245,0)),to(#f5f5f5));
     background: linear-gradient(90deg,#f5f5f5 0, rgba(245,245,245,0) 10%, rgba(245,245,245,0) 90%,#f5f5f5 100%);
 }
 .loading:after{content: '\6b63\5728\52a0\8f7d\4e2d...';font-size: 0.28rem;}
 .loading.visible{display: block;}
-.loading-ring{content: '';position: absolute;left: 50%;top:9px;margin-left: -27px;width: 49px; height:18px;font-size: 0;
+.loading-ring{content: '';position: absolute;left: 50%;top:0.18rem;margin-left: -0.54rem;width: 1rem; height:18px;font-size: 0;
 background: url(./loadCar.png) no-repeat 0 0;
--webkit-background-size: 49px 18px;background-size: 49px 18px;}
-.loading-ring:before,.loading-ring:after{content: '';position: absolute;left: 19px;top: 16px;width: 5px; height: 5px;
+-webkit-background-size: 0.98rem 0.36rem;background-size: 0.98rem 0.36rem;}
+.loading-ring:before,.loading-ring:after{content: '';position: absolute;left: 0.38rem;top: 0.32rem;width:0.1rem; height: 0.1rem;
 background: url(./loadGl.png) no-repeat 0 0;
--webkit-background-size: 5px 5px;background-size: 5px 5px; -webkit-animation: wheel linear 0.2s infinite; animation: wheel linear 0.2s infinite; }
-.loading-ring:after{left: 40px;}
+-webkit-background-size: 0.1rem 0.1rem;background-size: 0.1rem 0.1rem; -webkit-animation: wheel linear 0.2s infinite; animation: wheel linear 0.2s infinite; }
+.loading-ring:after{left: 0.8rem;}
  @-webkit-keyframes loaing-animation {
     0% { background-position: 10% 0;}
     100% {background-position: 100% 0; }

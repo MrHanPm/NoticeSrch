@@ -56,7 +56,6 @@ export default {
     let psList2 = ['pcsn', 'edweight', 'totalweight', 'zbweight', 'zhouju', 'trucklength', 'truckwidth', 'truckheight', 'boxlength', 'boxwidth', 'boxheight', 'maxrate']
     if (this.$route.query.v) {
       newVal.model = this.$route.query.v
-      newVal.chassis1 = this.$route.query.v
     } else {
       for (let em in psList) {
         if (VAL[psList[em]]) {
@@ -140,10 +139,10 @@ export default {
   top: 0.56rem;
   right: 0;
   display: block;
-  font-family: YDUI-INLAY;
+  font-family: 'YDUI';
   font-size: .34rem;
   color: #c9c9c9;
-  content: "\E608";
+  content: "\E620";
 }
 .bu-title{
   font-size: 0.32rem;
