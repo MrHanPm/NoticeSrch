@@ -1,6 +1,6 @@
 <template>
   <yd-layout>
-    <yd-navbar slot="navbar" title="公告号查询详情" color="#333" fontsize=".36rem">
+    <yd-navbar slot="navbar" :title="vTitle" color="#333" fontsize=".36rem">
       <div slot="left" @click="this.back">
         <yd-navbar-back-icon></yd-navbar-back-icon>
       </div>
@@ -27,6 +27,7 @@
     <chassis-box v-if="cutTab === 1" :val="dpDetail" :tbl="dpEngine"></chassis-box>
     <fuel-box v-if="cutTab === 2" :val="ranYouDetail" :tbl="zcDetail.model"></fuel-box>
     <v-loading :show="isLod"></v-loading>
+    <yd-backtop></yd-backtop>
   </yd-layout>
 </template>
 
@@ -44,6 +45,7 @@ export default {
   },
   data () {
     return {
+      vTitle: '公告查询详情',
       cutTab: 0,
       isSlider: false,
       isLod: true,
@@ -58,6 +60,9 @@ export default {
   },
   created () {
     let URL = localStorage.getItem('URL')
+    if (this.$route.query.s) {
+      this.vTitle = '新能源查询详情'
+    }
     XHR.getMsg(URL).then(res => {
       if (res.data.status === 1) {
         this.zcDetail = res.data.zcDetail

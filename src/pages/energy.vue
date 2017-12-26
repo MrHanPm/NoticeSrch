@@ -34,13 +34,14 @@
         <div>目录序号:</div>
         <div class="page">
           <em>{{em.dirNumber}}</em>
-          <em v-if="em.url" class="w" @click.stop="toMsg(em.url, '/msgs')">查看公告 ></em>
+          <em v-if="em.url" class="w" @click.stop="toMsg(em.url, '/msgs?s=1')">查看公告 ></em>
         </div>
       </li>
     </ul>
 
     <v-more :show="isMore"></v-more>
     <v-loading :show="isLod"></v-loading>
+    <yd-backtop></yd-backtop>
   </yd-layout>
 </template>
 
@@ -50,7 +51,6 @@ export default {
   components: {},
   data () {
     return {
-      cutTab: 0,
       isLod: true,
       isMore: true,
       page: 1,
@@ -105,11 +105,7 @@ export default {
         console.log(err)
       })
     },
-    sub () {},
-    cuts (e) {
-      this.cutTab = e
-      // console.log(this.cutTab)
-    }
+    sub () {}
   }
 }
 </script>
@@ -146,6 +142,20 @@ export default {
     line-height: 0.48rem;
     overflow: hidden;
     div:first-child{width: 1.4rem;}
+    .page{
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    em:first-child{
+      width: 3.2rem;
+      height: 0.48rem;
+      display: block;
+      float: left;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
   .w{float: right; color: #1571E5;}
 }

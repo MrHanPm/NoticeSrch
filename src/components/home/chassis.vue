@@ -85,8 +85,8 @@
         <span slot="left">排放标准</span>
         <select slot="right" v-model="val.pfsp">
           <option value="">请选择</option>
-          <option value="国Ⅴ">国Ⅴ,五</option>
-          <option value="国Ⅳ">国IV,四</option>
+          <option value="国五">国五</option>
+          <option value="国四">国四</option>
         </select>
       </yd-cell-item>
       <yd-cell-item>
@@ -101,7 +101,7 @@
     <div class="lisd-title">更多查询条件</div>
     <yd-cell-group>
       <yd-cell-item>
-        <span slot="left">批次范围</span>
+        <span slot="left">批次</span>
         <div slot="right" class="flex-wrap row-flex box-fw">
           <div class="m-input">
             <input type="tel" max="4" v-model="val.pc1" 

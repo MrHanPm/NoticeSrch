@@ -41,6 +41,7 @@
 
     <v-more :show="isMore"></v-more>
     <v-loading :show="isLod"></v-loading>
+    <yd-backtop></yd-backtop>
   </yd-layout>
 </template>
 
@@ -188,6 +189,11 @@ export default {
     line-height: 0.48rem;
     overflow: hidden;
     div:first-child{width: 1.4rem;}
+    .page{
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
 }
 

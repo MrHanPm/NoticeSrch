@@ -14,7 +14,7 @@ export default {
     },
     noData () {
       this.$dialog.notify({
-        mes: '查询无结果',
+        mes: '查询无结果,请更改查询条件',
         timeout: 2000,
         callback: () => {
           this.$router.back()

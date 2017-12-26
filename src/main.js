@@ -12,6 +12,7 @@ import { Toast, Notify } from 'vue-ydui/dist/lib.rem/dialog'
 import { CellGroup, CellItem } from 'vue-ydui/dist/lib.rem/cell'
 import { Input } from 'vue-ydui/dist/lib.rem/input'
 import { Slider, SliderItem } from 'vue-ydui/dist/lib.rem/slider'
+import { BackTop } from 'vue-ydui/dist/lib.rem/backtop'
 
 import 'vue-ydui/dist/ydui.base.css'
 import './assets/flex.css'
@@ -27,6 +28,7 @@ Vue.component(CellItem.name, CellItem)
 Vue.component(Input.name, Input)
 Vue.component(Slider.name, Slider)
 Vue.component(SliderItem.name, SliderItem)
+Vue.component(BackTop.name, BackTop)
 
 Vue.component(Loading.name, Loading)
 Vue.component(More.name, More)

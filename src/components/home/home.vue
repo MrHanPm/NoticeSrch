@@ -4,7 +4,7 @@
       <yd-cell-item>
         <span slot="left">示例公告</span>
         <span slot="right" class="shili" @click.stop="toMsg(url, '/msgs')">
-          CA100P40K2L1E5A84 >>
+          CA4250P66K25T1A1E5 >>
         </span>
       </yd-cell-item>
       <yd-cell-item>
@@ -110,7 +110,7 @@
         <span slot="left">企业名称</span>
         <div slot="right">
           <input type="text" v-model="val.factory" 
-            placeholder="例：锡柴CA6DM2-39E4"
+            placeholder="例：雷沃重工股份有限公司"
             autocomplete="off">
         </div>
       </yd-cell-item>
@@ -133,7 +133,7 @@
           <span>到</span>
           <div class="m-input">
             <input type="tel" max="4" v-model="val.pcsn2" 
-              placeholder="例：2500"
+              placeholder="例：279"
               autocomplete="off">
           </div>
         </div>
@@ -149,7 +149,7 @@
           <span>到</span>
           <div class="m-input">
             <input type="tel" max="4" v-model="val.maxrate2" 
-              placeholder="例：7200"
+              placeholder="例：200"
               autocomplete="off">
           </div>
         </div>

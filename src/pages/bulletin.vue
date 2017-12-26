@@ -1,6 +1,6 @@
 <template>
   <yd-layout>
-    <yd-navbar slot="navbar" title="公告号查询结果" color="#333" fontsize=".36rem">
+    <yd-navbar slot="navbar" title="公告查询结果" color="#333" fontsize=".36rem">
       <div slot="left" @click="this.back">
         <yd-navbar-back-icon></yd-navbar-back-icon>
       </div>
@@ -29,6 +29,7 @@
 
     <v-more :show="isMore"></v-more>
     <v-loading :show="isLod"></v-loading>
+    <yd-backtop></yd-backtop>
   </yd-layout>
 </template>
 

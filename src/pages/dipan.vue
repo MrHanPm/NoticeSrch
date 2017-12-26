@@ -7,6 +7,7 @@
     </yd-navbar>
     <chassis-box :val="dpDetail" :tbl="dpEngine"></chassis-box>
     <v-loading :show="isLod"></v-loading>
+    <yd-backtop></yd-backtop>
   </yd-layout>
 </template>
 

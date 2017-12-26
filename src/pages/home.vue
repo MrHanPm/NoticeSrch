@@ -185,7 +185,7 @@ export default {
         }
       }
       this.$dialog.notify({
-        mes: '请输入筛选条件～',
+        mes: '请输入任一查询条件',
         timeout: 3000,
         callback: () => {}
       })
@@ -207,7 +207,7 @@ export default {
           this.navTit = '免征公告查询'
           break
         default:
-          this.navTit = '新能源查询'
+          this.navTit = '新能源公告查询'
           break
       }
     },
