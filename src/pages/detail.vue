@@ -6,122 +6,120 @@
       </div>
     </yd-navbar>
 
-    <div>
-      <div class="tx-name">燃油公告参数</div>
-      <table class="x-table">
-        <tr>
-          <td>企业名称</td>
-          <td>{{data.extend.company}}</td>
-        </tr>
-        <tr>
-          <td>产品名称</td>
-          <td>{{data.extend.proname}}</td>
-        </tr>
-        <tr>
-          <td>产品型号</td>
-          <td>{{data.extend.promodel}}</td>
-        </tr>
-      </table>
-      <div class="tx-name">整车参数</div>
-      <table class="x-table">
-        <tr>
-          <td>外形尺寸(长×宽×高)mm</td>
-          <td>{{data.shapesize}}</td>
-        </tr>
-        <tr>
-          <td>货箱栏板尺寸(长×宽×高 mm)或容积</td>
-          <td>{{data.innersize}}</td>
-        </tr>
-        <tr>
-          <td>整备质量(Kg)</td>
-          <td>{{data.zbweight}}</td>
-        </tr>
-        <tr>
-          <td>总质量(Kg)</td>
-          <td>{{data.weight}}</td>
-        </tr>
-        <tr>
-          <td>驱动形式</td>
-          <td>{{data.drivermodel}}</td>
-        </tr>
-      </table>
-      <div class="tx-name">底盘配置与技术参数</div>
-      <table class="x-table">
-        <tr>
-          <td>底盘生产企业</td>
-          <td>{{data.pancompany}}</td>
-        </tr>
-        <tr>
-          <td>底盘型号</td>
-          <td>{{data.panmodel}}</td>
-        </tr>
-        <tr>
-          <td>发动机生产企业</td>
-          <td>{{data.enginecompany}}</td>
-        </tr>
-        <tr>
-          <td>发动机型号</td>
-          <td>{{data.enginemodel}}</td>
-        </tr>
-        <tr>
-          <td>变速器型号</td>
-          <td>{{data.bsqmodel}}</td>
-        </tr>
-        <tr>
-          <td>轮胎规格型号</td>
-          <td>{{data.tyremodel}}</td>
-        </tr>
-        <tr>
-          <td>主减速器速比(驱动桥速比)</td>
-          <td>{{data.jsqrate}}</td>
-        </tr>
-        <tr>
-          <td>综合燃料消耗量L/100km</td>
-          <td>{{data.avecost}}</td>
-        </tr>
-        <tr>
-          <td>60km/h空载等速燃料消耗量L/100km</td>
-          <td>{{data.emptycost}}</td>
-        </tr>
-      </table>
-      <div class="tx-name">燃料消耗量参数表</div>
-      <table class="x-table">
-        <tr>
-          <td>产品型号</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>执行标准</td>
-          <td>{{data.prostd}}</td>
-        </tr>
-      </table>
+    <div class="m-name">{{data.extend.promodel}} {{data.extend.proname}}</div>
+    <div class="tx-name">燃油公告参数</div>
+    <table class="x-table">
+      <tr>
+        <td>企业名称</td>
+        <td>{{data.extend.company}}</td>
+      </tr>
+      <tr>
+        <td>产品名称</td>
+        <td>{{data.extend.proname}}</td>
+      </tr>
+      <tr>
+        <td>产品型号</td>
+        <td>{{data.extend.promodel}}</td>
+      </tr>
+    </table>
+    <div class="tx-name">整车参数</div>
+    <table class="x-table">
+      <tr>
+        <td>外形尺寸(长×宽×高)mm</td>
+        <td>{{data.shapesize}}</td>
+      </tr>
+      <tr>
+        <td>货箱栏板尺寸(长×宽×高 mm)或容积</td>
+        <td>{{data.innersize}}</td>
+      </tr>
+      <tr>
+        <td>整备质量(Kg)</td>
+        <td>{{data.zbweight}}</td>
+      </tr>
+      <tr>
+        <td>总质量(Kg)</td>
+        <td>{{data.weight}}</td>
+      </tr>
+      <tr>
+        <td>驱动形式</td>
+        <td>{{data.drivermodel}}</td>
+      </tr>
+    </table>
+    <div class="tx-name">底盘配置与技术参数</div>
+    <table class="x-table">
+      <tr>
+        <td>底盘生产企业</td>
+        <td>{{data.pancompany}}</td>
+      </tr>
+      <tr>
+        <td>底盘型号</td>
+        <td>{{data.panmodel}}</td>
+      </tr>
+      <tr>
+        <td>发动机生产企业</td>
+        <td>{{data.enginecompany}}</td>
+      </tr>
+      <tr>
+        <td>发动机型号</td>
+        <td>{{data.enginemodel}}</td>
+      </tr>
+      <tr>
+        <td>变速器型号</td>
+        <td>{{data.bsqmodel}}</td>
+      </tr>
+      <tr>
+        <td>轮胎规格型号</td>
+        <td>{{data.tyremodel}}</td>
+      </tr>
+      <tr>
+        <td>主减速器速比(驱动桥速比)</td>
+        <td>{{data.jsqrate}}</td>
+      </tr>
+      <tr>
+        <td>综合燃料消耗量L/100km</td>
+        <td>{{data.avecost}}</td>
+      </tr>
+      <tr>
+        <td>60km/h空载等速燃料消耗量L/100km</td>
+        <td>{{data.emptycost}}</td>
+      </tr>
+    </table>
+    <div class="tx-name">燃料消耗量参数表</div>
+    <table class="x-table">
+      <tr>
+        <td>产品型号</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>执行标准</td>
+        <td>{{data.prostd}}</td>
+      </tr>
+    </table>
 
-      <table class="d-table">
-        <tr class="w">
-          <td>满载等速</td>
-          <td rowspan="2">档位</td>
-          <td>燃料消耗量</td>
-        </tr>
-        <tr>
-          <td>车速 km/h</td>
-          <td>油耗 L/100km</td>
-        </tr>
-        <tr v-for="(em, inx) in fullCost[0]" :key="inx">
-          <td>{{em}}</td>
-          <td>{{fullCost[1][inx]}}</td>
-          <td>{{fullCost[2][inx]}}</td>
-        </tr>
-      </table>
+    <table class="d-table">
+      <tr class="w">
+        <td>满载等速</td>
+        <td rowspan="2">档位</td>
+        <td>燃料消耗量</td>
+      </tr>
+      <tr>
+        <td>车速 km/h</td>
+        <td>油耗 L/100km</td>
+      </tr>
+      <tr v-for="(em, inx) in fullCost[0]" :key="inx">
+        <td>{{em}}</td>
+        <td>{{fullCost[1][inx]}}</td>
+        <td>{{fullCost[2][inx]}}</td>
+      </tr>
+    </table>
 
-      <table class="x-table">
-        <tr style="background:#fff;">
-          <td>燃油消耗量达标车型编号</td>
-          <td>{{data.prosn}}</td>
-        </tr>
-      </table>
-    </div>
+    <table class="x-table">
+      <tr style="background:#fff;">
+        <td>燃油消耗量达标车型编号</td>
+        <td>{{data.prosn}}</td>
+      </tr>
+    </table>
     <v-loading :show="isLod"></v-loading>
-    <yd-backtop></yd-backtop>
   </yd-layout>
 </template>
 
@@ -140,6 +138,7 @@ export default {
   },
   created () {
     let RYL = localStorage.getItem('RYL')
+    this.$dialog.backtop({num: 6})
     XHR.getMsg(RYL).then(res => {
       if (res.data.status === 1) {
         this.isLod = false
@@ -155,6 +154,16 @@ export default {
     }).catch(err => {
       console.log(err)
     })
+  },
+  mounted () {
+    let DOM = document.getElementById('scrollView')
+    DOM.addEventListener('scroll', () => {
+      if (DOM.scrollTop > 1000) {
+        this.$dialog.backtop({num: 0})
+      } else {
+        this.$dialog.backtop({num: 6})
+      }
+    }, false)
   },
   methods: {
 

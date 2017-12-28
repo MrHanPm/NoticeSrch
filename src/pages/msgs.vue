@@ -8,7 +8,7 @@
 
     <yd-slider v-if="isSlider" autoplay="5000">
       <yd-slider-item v-for="(em, index) in picture" :key="index">
-        <img :src="em">
+        <img :src="em" onerror="this.onerror=null;this.src='https://s.kcimg.cn/gonggao/default90.jpg';">
       </yd-slider-item>
     </yd-slider>
     <div v-if="zcDetail.title" class="m-name">{{zcDetail.title}}</div>
@@ -27,7 +27,6 @@
     <chassis-box v-if="cutTab === 1" :val="dpDetail" :tbl="dpEngine"></chassis-box>
     <fuel-box v-if="cutTab === 2" :val="ranYouDetail" :tbl="zcDetail.model"></fuel-box>
     <v-loading :show="isLod"></v-loading>
-    <yd-backtop></yd-backtop>
   </yd-layout>
 </template>
 
@@ -60,18 +59,21 @@ export default {
   },
   created () {
     let URL = localStorage.getItem('URL')
+    this.$dialog.backtop({num: 6})
     if (this.$route.query.s) {
       this.vTitle = '新能源查询详情'
     }
     XHR.getMsg(URL).then(res => {
       if (res.data.status === 1) {
+        if (res.data.picture) {
+          this.picture = res.data.picture
+          this.isSlider = true
+        }
         this.zcDetail = res.data.zcDetail
-        this.picture = res.data.picture
         this.zcEngine = res.data.zcEngine
         this.ranYouDetail = res.data.ranYouDetail
         this.dpDetail = res.data.dpDetail
         this.dpEngine = res.data.dpEngine
-        this.isSlider = true
         this.isLod = false
       } else {
         this.$dialog.notify({
@@ -83,6 +85,16 @@ export default {
     }).catch(err => {
       console.log(err)
     })
+  },
+  mounted () {
+    let DOM = document.getElementById('scrollView')
+    DOM.addEventListener('scroll', () => {
+      if (DOM.scrollTop > 1000) {
+        this.$dialog.backtop({num: 0})
+      } else {
+        this.$dialog.backtop({num: 6})
+      }
+    }, false)
   },
   methods: {
     cuts (e) {

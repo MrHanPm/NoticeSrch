@@ -3,7 +3,7 @@
     <div class="loading visible load-boxs" v-if="show">
       <span class="loading-ring"> </span>
     </div>
-    <div v-if="!show" class="txt">我是有底线滴～</div>
+    <div v-if="!show" class="txt">—— • ——</div>
   </div>
 </template>
 <script type="text/babel">
@@ -23,6 +23,6 @@ export default {
   padding-top: 0.5rem;
   text-align: center;
   font-size: 0.28rem;
-  color:#666;
+  color:#ccc;
 }
 </style>

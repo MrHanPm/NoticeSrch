@@ -36,7 +36,7 @@
       </tr>
       <tr>
         <td>规格</td>
-        <td>{{val.ltgg}}</td>
+        <td>{{val.ltgg}}(mm)</td>
       </tr>
       <tr>
         <td>燃油类型</td>

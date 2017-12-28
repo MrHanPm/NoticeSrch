@@ -50,11 +50,11 @@
     <table class="x-table">
       <tr>
         <td>外形尺寸</td>
-        <td><div>{{val.trucklength}}X{{val.truckwidth}}X{{val.truckheight}}</div></td>
+        <td><div>{{val.trucklength}}X{{val.truckwidth}}X{{val.truckheight}}(mm)</div></td>
       </tr>
       <tr>
         <td>货箱尺寸</td>
-        <td>{{val.boxlength}}X{{val.boxwidth}}X{{val.boxheight}}</td>
+        <td>{{val.boxlength}}X{{val.boxwidth}}X{{val.boxheight}}(mm)</td>
       </tr>
       <tr>
         <td>轴数</td>
@@ -62,7 +62,7 @@
       </tr>
       <tr>
         <td>轴距</td>
-        <td>{{val.zhouju}}</td>
+        <td>{{val.zhouju}}(mm)</td>
       </tr>
       <tr>
         <td>轴荷</td>
@@ -70,19 +70,19 @@
       </tr>
       <tr>
         <td>整备质量</td>
-        <td>{{val.zbweight}}</td>
+        <td>{{val.zbweight}}(Kg)</td>
       </tr>
       <tr>
         <td>额定载质量</td>
-        <td>{{val.edweight}}</td>
+        <td>{{val.edweight}}(Kg)</td>
       </tr>
       <tr>
         <td>总质量</td>
-        <td>{{val.totalweight}}</td>
+        <td>{{val.totalweight}}(Kg)</td>
       </tr>
       <tr>
         <td>挂车质量</td>
-        <td>{{val.gcweight}}</td>
+        <td>{{val.gcweight}}(Kg)</td>
       </tr>
       <tr>
         <td>半挂鞍座</td>
@@ -94,15 +94,15 @@
       </tr>
       <tr>
         <td>前排乘客</td>
-        <td>{{val.qianpainum}}</td>
+        <td>{{val.qianpainum}}(人)</td>
       </tr>
       <tr>
         <td>额定载客</td>
-        <td>{{val.peoplenum}}</td>
+        <td>{{val.peoplenum}}(人)</td>
       </tr>
       <tr>
         <td>轮胎数</td>
-        <td>{{val.tyrenum}}</td>
+        <td>{{val.tyrenum}}(个)</td>
       </tr>
       <tr>
         <td>轮胎规格</td>
@@ -114,23 +114,23 @@
       </tr>
       <tr>
         <td>前轮距</td>
-        <td>{{val.qianlunju}}</td>
+        <td>{{val.qianlunju}}(mm)</td>
       </tr>
       <tr>
         <td>后轮距</td>
-        <td>{{val.houlunju}}</td>
+        <td>{{val.houlunju}}(mm)</td>
       </tr>
       <tr>
         <td>前悬/后悬</td>
-        <td>{{val.qianhouxuan}}</td>
+        <td>{{val.qianhouxuan}}(mm)</td>
       </tr>
       <tr>
         <td>接近角/离去角</td>
-        <td>{{val.liqujiao}}</td>
+        <td>{{val.liqujiao}}(°)</td>
       </tr>
       <tr>
         <td>最高车速</td>
-        <td>{{val.maxrate}}</td>
+        <td>{{val.maxrate}}(km/h)</td>
       </tr>
       <tr>
         <td>底盘型号</td>

@@ -5,9 +5,9 @@
         <yd-navbar-back-icon></yd-navbar-back-icon>
       </div>
     </yd-navbar>
+    <div v-if="dpDetail.title" class="m-name">{{dpDetail.title}}</div>
     <chassis-box :val="dpDetail" :tbl="dpEngine"></chassis-box>
     <v-loading :show="isLod"></v-loading>
-    <yd-backtop></yd-backtop>
   </yd-layout>
 </template>
 
@@ -28,9 +28,11 @@ export default {
   },
   created () {
     let URL = localStorage.getItem('URL')
+    this.$dialog.backtop({num: 6})
     XHR.getMsg(URL).then(res => {
       if (res.data.status === 1) {
         this.dpDetail = res.data.data
+        this.dpEngine = res.data.engine
         this.isLod = false
       } else {
         this.$dialog.notify({
@@ -42,6 +44,16 @@ export default {
     }).catch(err => {
       console.log(err)
     })
+  },
+  mounted () {
+    let DOM = document.getElementById('scrollView')
+    DOM.addEventListener('scroll', () => {
+      if (DOM.scrollTop > 1000) {
+        this.$dialog.backtop({num: 0})
+      } else {
+        this.$dialog.backtop({num: 6})
+      }
+    }, false)
   },
   methods: {
   }

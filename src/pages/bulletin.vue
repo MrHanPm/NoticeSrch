@@ -12,7 +12,7 @@
       <div class="bu-title">{{em.title}}</div>
       <div class="flex-wrap row-flex b-box">
         <div class="b-img">
-          <img :src="em.pic">
+          <img :src="em.pic" onerror="this.onerror=null;this.src='https://s.kcimg.cn/gonggao/default90.jpg';">
         </div>
         <div class="page b-msg">
           <p>发动机: {{em.engine}}</p>
@@ -29,7 +29,6 @@
 
     <v-more :show="isMore"></v-more>
     <v-loading :show="isLod"></v-loading>
-    <yd-backtop></yd-backtop>
   </yd-layout>
 </template>
 
@@ -79,6 +78,11 @@ export default {
     DOM.addEventListener('scroll', () => {
       if (DOM.scrollHeight - DOM.offsetHeight - DOM.scrollTop < 14 && this.isScrl) {
         this.loadList()
+      }
+      if (DOM.scrollTop > 1000) {
+        this.$dialog.backtop({num: 0})
+      } else {
+        this.$dialog.backtop({num: 6})
       }
     }, false)
   },
