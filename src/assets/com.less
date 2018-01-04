@@ -32,7 +32,24 @@ body .cell-arrow select{
   top:0;
   left: 0;
 }
-
+body .tx-box{
+  display: block;
+  height: auto;
+  padding-bottom: 0.4rem;
+  width: 100%;
+  overflow-x: hidden;
+}
+.g-scr-box{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
 body .slider-pagination{
   display: inline-block;
   padding: 1px 3px 0;
@@ -76,7 +93,6 @@ body .slider-item img{
   width: auto;
   object-fit: cover;
 }
-body .m-navbar:after{border-bottom: none;}
 
 @font-face {
   font-family: 'YDUI';
@@ -85,7 +101,6 @@ body .m-navbar:after{border-bottom: none;}
   url('//at.alicdn.com/t/font_521288_ualev672qvkj4i.woff') format('woff');
 }
 
-#scrollView{ position: static;}
 body .back-icon:before{ content: '\e63d';font-family: 'YDUI';}
 body .icon-refresh:before{ content: '\e641';font-family: 'YDUI';}
 body .icon-search:before{ content: '\e622';font-family: 'YDUI';}
@@ -96,4 +111,8 @@ body .cell-arrow:after{
   font-family: 'YDUI';
   position: absolute;
   right: 0.4rem;
+  top: 0.3rem;
+}
+body #app{
+  position: static;
 }

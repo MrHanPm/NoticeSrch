@@ -1,6 +1,6 @@
 <template>
   <yd-layout>
-    <yd-navbar slot="navbar" :title="navTit" color="#333" fontsize=".36rem">
+    <yd-navbar v-if="isIco" slot="navbar" :title="navTit" color="#333" fontsize=".36rem">
       <div slot="left" @click="this.back">
         <yd-navbar-back-icon></yd-navbar-back-icon>
       </div>
@@ -72,6 +72,7 @@ export default {
   },
   data () {
     return {
+      isIco: true,
       navTit: '公告号查询',
       pc: 0,
       url: '',
@@ -85,6 +86,13 @@ export default {
     }
   },
   created () {
+    const STEPV = parseInt(localStorage.getItem('STEPV'))
+    if (STEPV) {
+      this.cutTab = STEPV
+    }
+    if (this.isApp()) {
+      this.isIco = false
+    }
     XHR.getHot().then(res => {
       if (res.data.status === 1) {
         this.pc = res.data.pc
@@ -100,6 +108,12 @@ export default {
     }).catch(err => {
       console.log(err)
     })
+  },
+  mounted () {
+    const dm = document.querySelector('.y-backtop')
+    if (dm) {
+      this.$dialog.backtop({num: 6})
+    }
   },
   methods: {
     sub () {
@@ -196,20 +210,26 @@ export default {
       switch (e) {
         case 0:
           this.navTit = '公告号查询'
+          this.NMT('公告号查询')
           break
         case 1:
           this.navTit = '底盘公告查询'
+          this.NMT('底盘公告查询')
           break
         case 2:
           this.navTit = '燃油公告查询'
+          this.NMT('燃油公告查询')
           break
         case 3:
           this.navTit = '免征公告查询'
+          this.NMT('免征公告查询')
           break
         default:
           this.navTit = '新能源公告查询'
+          this.NMT('新能源公告查询')
           break
       }
+      localStorage.setItem('STEPV', e)
     },
     reset () {
       this.resets++
@@ -252,7 +272,6 @@ export default {
   font-size: 0.24rem;
   line-height: 0.4rem;
 }
-.m-navbar:after{border-bottom: none;}
 .m-btm{
   width: 100%;
   height: 1rem;
@@ -275,5 +294,4 @@ export default {
   color:#fff;
   background: #1571E5;
 }
-
 </style>

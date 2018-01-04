@@ -1,6 +1,6 @@
 <template>
   <yd-layout>
-    <yd-navbar slot="navbar" title="公告查询结果" color="#333" fontsize=".36rem">
+    <yd-navbar v-if="isIco" slot="navbar" title="公告查询结果" color="#333" fontsize=".36rem">
       <div slot="left" @click="this.back">
         <yd-navbar-back-icon></yd-navbar-back-icon>
       </div>
@@ -38,6 +38,7 @@ export default {
   components: {},
   data () {
     return {
+      isIco: true,
       cutTab: 0,
       isLod: true,
       isMore: true,
@@ -54,6 +55,10 @@ export default {
     let newVal = {}
     let psList = ['model', 'brand', 'protype', 'chassis1', 'zhoushu', 'pfstd', 'fueltype', 'address', 'factory', 'engine', 'peoplenum', 'remarks']
     let psList2 = ['pcsn', 'edweight', 'totalweight', 'zbweight', 'zhouju', 'trucklength', 'truckwidth', 'truckheight', 'boxlength', 'boxwidth', 'boxheight', 'maxrate']
+    if (this.isApp()) {
+      this.isIco = false
+      this.NMT('公告查询结果')
+    }
     if (this.$route.query.v) {
       newVal.model = this.$route.query.v
     } else {

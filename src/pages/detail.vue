@@ -1,125 +1,126 @@
 <template>
   <yd-layout>
-    <yd-navbar slot="navbar" title="燃油查询详情" color="#333" fontsize=".36rem">
+    <yd-navbar v-if="isIco" slot="navbar" title="燃油查询详情" color="#333" fontsize=".36rem">
       <div slot="left" @click="this.back">
         <yd-navbar-back-icon></yd-navbar-back-icon>
       </div>
     </yd-navbar>
+    <div class="g-scr-box">
+      <div class="m-name">{{data.extend.promodel}} {{data.extend.proname}}</div>
+      <div class="tx-name">燃油公告参数</div>
+      <table class="x-table">
+        <tr>
+          <td>企业名称</td>
+          <td>{{data.extend.company}}</td>
+        </tr>
+        <tr>
+          <td>产品名称</td>
+          <td>{{data.extend.proname}}</td>
+        </tr>
+        <tr>
+          <td>产品型号</td>
+          <td>{{data.extend.promodel}}</td>
+        </tr>
+      </table>
+      <div class="tx-name">整车参数</div>
+      <table class="x-table">
+        <tr>
+          <td>外形尺寸(长×宽×高)mm</td>
+          <td>{{data.shapesize}}</td>
+        </tr>
+        <tr>
+          <td>货箱栏板尺寸(长×宽×高 mm)或容积</td>
+          <td>{{data.innersize}}</td>
+        </tr>
+        <tr>
+          <td>整备质量(Kg)</td>
+          <td>{{data.zbweight}}</td>
+        </tr>
+        <tr>
+          <td>总质量(Kg)</td>
+          <td>{{data.weight}}</td>
+        </tr>
+        <tr>
+          <td>驱动形式</td>
+          <td>{{data.drivermodel}}</td>
+        </tr>
+      </table>
+      <div class="tx-name">底盘配置与技术参数</div>
+      <table class="x-table">
+        <tr>
+          <td>底盘生产企业</td>
+          <td>{{data.pancompany}}</td>
+        </tr>
+        <tr>
+          <td>底盘型号</td>
+          <td>{{data.panmodel}}</td>
+        </tr>
+        <tr>
+          <td>发动机生产企业</td>
+          <td>{{data.enginecompany}}</td>
+        </tr>
+        <tr>
+          <td>发动机型号</td>
+          <td>{{data.enginemodel}}</td>
+        </tr>
+        <tr>
+          <td>变速器型号</td>
+          <td>{{data.bsqmodel}}</td>
+        </tr>
+        <tr>
+          <td>轮胎规格型号</td>
+          <td>{{data.tyremodel}}</td>
+        </tr>
+        <tr>
+          <td>主减速器速比(驱动桥速比)</td>
+          <td>{{data.jsqrate}}</td>
+        </tr>
+        <tr>
+          <td>综合燃料消耗量L/100km</td>
+          <td>{{data.avecost}}</td>
+        </tr>
+        <tr>
+          <td>60km/h空载等速燃料消耗量L/100km</td>
+          <td>{{data.emptycost}}</td>
+        </tr>
+      </table>
+      <div class="tx-name">燃料消耗量参数表</div>
+      <table class="x-table">
+        <tr>
+          <td>产品型号</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>执行标准</td>
+          <td>{{data.prostd}}</td>
+        </tr>
+      </table>
 
-    <div class="m-name">{{data.extend.promodel}} {{data.extend.proname}}</div>
-    <div class="tx-name">燃油公告参数</div>
-    <table class="x-table">
-      <tr>
-        <td>企业名称</td>
-        <td>{{data.extend.company}}</td>
-      </tr>
-      <tr>
-        <td>产品名称</td>
-        <td>{{data.extend.proname}}</td>
-      </tr>
-      <tr>
-        <td>产品型号</td>
-        <td>{{data.extend.promodel}}</td>
-      </tr>
-    </table>
-    <div class="tx-name">整车参数</div>
-    <table class="x-table">
-      <tr>
-        <td>外形尺寸(长×宽×高)mm</td>
-        <td>{{data.shapesize}}</td>
-      </tr>
-      <tr>
-        <td>货箱栏板尺寸(长×宽×高 mm)或容积</td>
-        <td>{{data.innersize}}</td>
-      </tr>
-      <tr>
-        <td>整备质量(Kg)</td>
-        <td>{{data.zbweight}}</td>
-      </tr>
-      <tr>
-        <td>总质量(Kg)</td>
-        <td>{{data.weight}}</td>
-      </tr>
-      <tr>
-        <td>驱动形式</td>
-        <td>{{data.drivermodel}}</td>
-      </tr>
-    </table>
-    <div class="tx-name">底盘配置与技术参数</div>
-    <table class="x-table">
-      <tr>
-        <td>底盘生产企业</td>
-        <td>{{data.pancompany}}</td>
-      </tr>
-      <tr>
-        <td>底盘型号</td>
-        <td>{{data.panmodel}}</td>
-      </tr>
-      <tr>
-        <td>发动机生产企业</td>
-        <td>{{data.enginecompany}}</td>
-      </tr>
-      <tr>
-        <td>发动机型号</td>
-        <td>{{data.enginemodel}}</td>
-      </tr>
-      <tr>
-        <td>变速器型号</td>
-        <td>{{data.bsqmodel}}</td>
-      </tr>
-      <tr>
-        <td>轮胎规格型号</td>
-        <td>{{data.tyremodel}}</td>
-      </tr>
-      <tr>
-        <td>主减速器速比(驱动桥速比)</td>
-        <td>{{data.jsqrate}}</td>
-      </tr>
-      <tr>
-        <td>综合燃料消耗量L/100km</td>
-        <td>{{data.avecost}}</td>
-      </tr>
-      <tr>
-        <td>60km/h空载等速燃料消耗量L/100km</td>
-        <td>{{data.emptycost}}</td>
-      </tr>
-    </table>
-    <div class="tx-name">燃料消耗量参数表</div>
-    <table class="x-table">
-      <tr>
-        <td>产品型号</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>执行标准</td>
-        <td>{{data.prostd}}</td>
-      </tr>
-    </table>
+      <table class="d-table">
+        <tr class="w">
+          <td>满载等速</td>
+          <td rowspan="2">档位</td>
+          <td>燃料消耗量</td>
+        </tr>
+        <tr>
+          <td>车速 km/h</td>
+          <td>油耗 L/100km</td>
+        </tr>
+        <tr v-for="(em, inx) in fullCost[0]" :key="inx">
+          <td>{{em}}</td>
+          <td>{{fullCost[1][inx]}}</td>
+          <td>{{fullCost[2][inx]}}</td>
+        </tr>
+      </table>
 
-    <table class="d-table">
-      <tr class="w">
-        <td>满载等速</td>
-        <td rowspan="2">档位</td>
-        <td>燃料消耗量</td>
-      </tr>
-      <tr>
-        <td>车速 km/h</td>
-        <td>油耗 L/100km</td>
-      </tr>
-      <tr v-for="(em, inx) in fullCost[0]" :key="inx">
-        <td>{{em}}</td>
-        <td>{{fullCost[1][inx]}}</td>
-        <td>{{fullCost[2][inx]}}</td>
-      </tr>
-    </table>
-
-    <table class="x-table">
-      <tr style="background:#fff;">
-        <td>燃油消耗量达标车型编号</td>
-        <td>{{data.prosn}}</td>
-      </tr>
-    </table>
-    <v-loading :show="isLod"></v-loading>
+      <table class="x-table">
+        <tr style="background:#fff;">
+          <td>燃油消耗量达标车型编号</td>
+          <td>{{data.prosn}}</td>
+        </tr>
+      </table>
+      <v-loading :show="isLod"></v-loading>
+    </div>
   </yd-layout>
 </template>
 
@@ -129,6 +130,7 @@ export default {
   components: {},
   data () {
     return {
+      isIco: true,
       isLod: true,
       data: {
         extend: {}
@@ -139,6 +141,10 @@ export default {
   created () {
     let RYL = localStorage.getItem('RYL')
     this.$dialog.backtop({num: 6})
+    if (this.isApp()) {
+      this.isIco = false
+      this.NMT('燃油查询详情')
+    }
     XHR.getMsg(RYL).then(res => {
       if (res.data.status === 1) {
         this.isLod = false
@@ -156,12 +162,15 @@ export default {
     })
   },
   mounted () {
-    let DOM = document.getElementById('scrollView')
+    let DOM = document.querySelector('.g-scr-box')
     DOM.addEventListener('scroll', () => {
       if (DOM.scrollTop > 1000) {
-        this.$dialog.backtop({num: 0})
+        this.$dialog.backtop({num: 0, box: 1})
       } else {
         this.$dialog.backtop({num: 6})
+      }
+      if (DOM.scrollHeight - DOM.offsetHeight - DOM.scrollTop < 14) {
+        DOM.scrollTop = DOM.scrollHeight - 15
       }
     }, false)
   },
@@ -183,7 +192,7 @@ export default {
   text-overflow: ellipsis;
   border-bottom: 0.02rem solid #f5f5f5;
 }
-.m-navbar:after{border-bottom: none;}
+
 .tab-box{
   height: 0.88rem;
   line-height: 0.88rem;

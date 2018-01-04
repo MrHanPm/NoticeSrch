@@ -1,6 +1,6 @@
 <template>
   <yd-layout>
-    <yd-navbar slot="navbar" title="燃油查询结果" color="#333" fontsize=".36rem">
+    <yd-navbar v-if="isIco" slot="navbar" title="燃油查询结果" color="#333" fontsize=".36rem">
       <div slot="left" @click="this.back">
         <yd-navbar-back-icon></yd-navbar-back-icon>
       </div>
@@ -46,6 +46,7 @@ export default {
   components: {},
   data () {
     return {
+      isIco: true,
       cutTab: 0,
       isLod: true,
       isMore: true,
@@ -59,6 +60,10 @@ export default {
     let VAL = JSON.parse(localStorage.getItem('VAL'))
     let newVal = {}
     let psList = ['promodel', 'company', 'enginemodel']
+    if (this.isApp()) {
+      this.isIco = false
+      this.NMT('燃油查询结果')
+    }
     for (let em in psList) {
       if (VAL[psList[em]]) {
         newVal[psList[em]] = VAL[psList[em]]

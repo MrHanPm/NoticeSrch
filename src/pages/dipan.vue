@@ -1,13 +1,15 @@
 <template>
   <yd-layout>
-    <yd-navbar slot="navbar" title="底盘查询详情" color="#333" fontsize=".36rem">
+    <yd-navbar v-if="isIco" slot="navbar" title="底盘查询详情" color="#333" fontsize=".36rem">
       <div slot="left" @click="this.back">
         <yd-navbar-back-icon></yd-navbar-back-icon>
       </div>
     </yd-navbar>
-    <div v-if="dpDetail.title" class="m-name">{{dpDetail.title}}</div>
-    <chassis-box :val="dpDetail" :tbl="dpEngine"></chassis-box>
-    <v-loading :show="isLod"></v-loading>
+    <div class="g-scr-box">
+      <div v-if="dpDetail.title" class="m-name">{{dpDetail.title}}</div>
+      <chassis-box :val="dpDetail" :tbl="dpEngine"></chassis-box>
+      <v-loading :show="isLod"></v-loading>
+    </div>
   </yd-layout>
 </template>
 
@@ -20,6 +22,7 @@ export default {
   },
   data () {
     return {
+      isIco: true,
       isLod: true,
 
       dpDetail: {},       // 底盘模块详情参数
@@ -28,6 +31,10 @@ export default {
   },
   created () {
     let URL = localStorage.getItem('URL')
+    if (this.isApp()) {
+      this.isIco = false
+      this.NMT('底盘查询详情')
+    }
     this.$dialog.backtop({num: 6})
     XHR.getMsg(URL).then(res => {
       if (res.data.status === 1) {
@@ -46,12 +53,15 @@ export default {
     })
   },
   mounted () {
-    let DOM = document.getElementById('scrollView')
+    let DOM = document.querySelector('.g-scr-box')
     DOM.addEventListener('scroll', () => {
       if (DOM.scrollTop > 1000) {
-        this.$dialog.backtop({num: 0})
+        this.$dialog.backtop({num: 0, box: 1})
       } else {
         this.$dialog.backtop({num: 6})
+      }
+      if (DOM.scrollHeight - DOM.offsetHeight - DOM.scrollTop < 14) {
+        DOM.scrollTop = DOM.scrollHeight - 15
       }
     }, false)
   },
@@ -72,7 +82,6 @@ export default {
   text-overflow: ellipsis;
   border-bottom: 0.02rem solid #f5f5f5;
 }
-.m-navbar:after{border-bottom: none;}
 .tab-box{
   height: 0.88rem;
   line-height: 0.88rem;

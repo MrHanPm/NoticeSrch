@@ -83,15 +83,15 @@
         <span slot="left">排放标准</span>
         <select slot="right" v-model="val.pfstd">
           <option value="">请选择</option>
-          <option value="国Ⅴ">国Ⅴ,五</option>
-          <option value="国Ⅳ">国IV,四</option>
+          <option value="国Ⅴ,五">国Ⅴ,五</option>
+          <option value="国IV,四">国IV,四</option>
         </select>
       </yd-cell-item>
       <yd-cell-item>
         <span slot="left">燃料种类</span>
         <div slot="right">
           <input type="text" v-model="val.fueltype" 
-            placeholder="例：燃油"
+            placeholder="例：柴油"
             autocomplete="off">
         </div>
       </yd-cell-item>
@@ -311,6 +311,34 @@ export default {
   data () {
     return {
       oldVal: {},
+      gru: [
+        'zhoushu',
+        'zhouju1',
+        'zhouju2',
+        'totalweight1',
+        'totalweight2',
+        'pcsn1',
+        'pcsn2',
+        'maxrate1',
+        'maxrate2',
+        'peoplenum',
+        'zbweight1',
+        'zbweight2',
+        'trucklength1',
+        'trucklength2',
+        'boxlength1',
+        'boxlength2',
+        'edweight1',
+        'edweight2',
+        'truckwidth1',
+        'truckwidth2',
+        'boxwidth1',
+        'boxwidth2',
+        'truckheight1',
+        'truckheight2',
+        'boxheight1',
+        'boxheight2'
+      ],
       val: {
         model: '',
         brand: '',
@@ -355,7 +383,13 @@ export default {
     ret: 'regVal',
     val: {
       handler (newVal, oldVal) {
-        this.$emit('setVal', newVal)
+        const val = newVal
+        const reg = /[^0-9]+\./g
+        for (let ems in this.gru) {
+          val[this.gru[ems]] = val[this.gru[ems]].replace(reg, '')
+        }
+        this.val = val
+        this.$emit('setVal', val)
       },
       deep: true
     }

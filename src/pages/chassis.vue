@@ -1,6 +1,6 @@
 <template>
   <yd-layout>
-    <yd-navbar slot="navbar" title="底盘查询结果" color="#333" fontsize=".36rem">
+    <yd-navbar v-if="isIco" slot="navbar" title="底盘查询结果" color="#333" fontsize=".36rem">
       <div slot="left" @click="this.back">
         <yd-navbar-back-icon></yd-navbar-back-icon>
       </div>
@@ -50,6 +50,7 @@ export default {
   components: {},
   data () {
     return {
+      isIco: true,
       cutTab: 0,
       isLod: true,
       isMore: true,
@@ -66,6 +67,10 @@ export default {
     let newVal = {}
     let psList = ['dpxh', 'cpsb', 'cpmc', 'zs', 'pfsp', 'rlzl', 'Mfdj']
     let psList2 = ['zbzl', 'zzl', 'zj', 'pc', 'c', 'Mgl', 'k', 'g']
+    if (this.isApp()) {
+      this.isIco = false
+      this.NMT('底盘查询结果')
+    }
     if (this.$route.query.v) {
       newVal.dpxh = this.$route.query.v
     } else {

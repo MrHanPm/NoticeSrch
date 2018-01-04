@@ -21,6 +21,7 @@ const Backtop = (options = {}) => {
   instance.$el.innerHTML = '回顶部'
   instance.$el.className = 'y-backtop'
   instance.callback = options.callback
+  instance.box = options.box
   if (options.num > 1) {
     instance.closeNotify()
     return
@@ -32,6 +33,9 @@ const Backtop = (options = {}) => {
   document.body.appendChild(instance.$el)
   instance.$el.addEventListener('click', () => {
     document.getElementById('scrollView').scrollTop = 0
+    if (instance.box) {
+      document.querySelector('.g-scr-box').scrollTop = 0
+    }
     instance.closeNotify()
   })
 }

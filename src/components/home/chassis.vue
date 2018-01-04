@@ -200,6 +200,25 @@ export default {
   data () {
     return {
       oldVal: {},
+      gru: [
+        'zbzl1',
+        'zbzl2',
+        'zzl1',
+        'zzl2',
+        'zs',
+        'zj1',
+        'zj2',
+        'pc1',
+        'pc2',
+        'c1',
+        'c2',
+        'Mgl1',
+        'Mgl2',
+        'k1',
+        'k2',
+        'g1',
+        'g2'
+      ],
       val: {
         dpxh: '',
         cpsb: '',
@@ -231,7 +250,13 @@ export default {
     ret: 'regVal',
     val: {
       handler (newVal, oldVal) {
-        this.$emit('setVal', newVal)
+        const val = newVal
+        const reg = /[^0-9]+\./g
+        for (let ems in this.gru) {
+          val[this.gru[ems]] = val[this.gru[ems]].replace(reg, '')
+        }
+        this.val = val
+        this.$emit('setVal', val)
       },
       deep: true
     }

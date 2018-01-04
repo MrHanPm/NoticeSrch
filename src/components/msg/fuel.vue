@@ -1,7 +1,6 @@
 <template>
   <div class="tx-box">
     <div class="tx-name">可查看下方不同配置的燃油公告详情</div>
-
     <table class="d-table">
       <tr class="w">
         <td>产品型号(车辆型号)</td>

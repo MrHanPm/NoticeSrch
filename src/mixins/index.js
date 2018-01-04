@@ -20,6 +20,13 @@ export default {
           this.$router.back()
         }
       })
+    },
+    isApp () {
+      const UA = navigator.userAgent
+      return UA.match(/360che/gi) ? 1 : 0
+    },
+    NMT (txt) {
+      window.WebViewJavascriptBridge.callHandler('onChangeWebTitle', {'changeWebTitle': txt})
     }
   }
 }
