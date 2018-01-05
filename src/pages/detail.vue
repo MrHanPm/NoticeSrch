@@ -162,17 +162,17 @@ export default {
     })
   },
   mounted () {
-    let DOM = document.querySelector('.g-scr-box')
-    DOM.addEventListener('scroll', () => {
-      if (DOM.scrollTop > 1000) {
-        this.$dialog.backtop({num: 0, box: 1})
-      } else {
-        this.$dialog.backtop({num: 6})
-      }
-      if (DOM.scrollHeight - DOM.offsetHeight - DOM.scrollTop < 14) {
-        DOM.scrollTop = DOM.scrollHeight - 15
-      }
-    }, false)
+    // let DOM = document.querySelector('.g-scr-box')
+    // DOM.addEventListener('scroll', () => {
+    //   if (DOM.scrollTop > 1000) {
+    //     this.$dialog.backtop({num: 0, box: 1})
+    //   } else {
+    //     this.$dialog.backtop({num: 6})
+    //   }
+    //   if (DOM.scrollHeight - DOM.offsetHeight - DOM.scrollTop < 14) {
+    //     DOM.scrollTop = DOM.scrollHeight - 15
+    //   }
+    // }, false)
   },
   methods: {
 

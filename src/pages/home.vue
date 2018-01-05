@@ -87,11 +87,11 @@ export default {
   },
   created () {
     const STEPV = parseInt(localStorage.getItem('STEPV'))
-    if (STEPV) {
-      this.cutTab = STEPV
-    }
     if (this.isApp()) {
       this.isIco = false
+    }
+    if (STEPV) {
+      this.cuts(STEPV)
     }
     XHR.getHot().then(res => {
       if (res.data.status === 1) {
@@ -111,8 +111,18 @@ export default {
   },
   mounted () {
     const dm = document.querySelector('.y-backtop')
+    const STEPV = parseInt(localStorage.getItem('STEPV'))
     if (dm) {
       this.$dialog.backtop({num: 6})
+    }
+    if (this.isApp()) {
+      setTimeout(() => {
+        if (STEPV) {
+          this.cuts(STEPV)
+        } else {
+          this.NMT('公告号查询')
+        }
+      }, 800)
     }
   },
   methods: {
@@ -210,23 +220,33 @@ export default {
       switch (e) {
         case 0:
           this.navTit = '公告号查询'
-          this.NMT('公告号查询')
+          if (this.isApp()) {
+            this.NMT('公告号查询')
+          }
           break
         case 1:
           this.navTit = '底盘公告查询'
-          this.NMT('底盘公告查询')
+          if (this.isApp()) {
+            this.NMT('底盘公告查询')
+          }
           break
         case 2:
           this.navTit = '燃油公告查询'
-          this.NMT('燃油公告查询')
+          if (this.isApp()) {
+            this.NMT('燃油公告查询')
+          }
           break
         case 3:
           this.navTit = '免征公告查询'
-          this.NMT('免征公告查询')
+          if (this.isApp()) {
+            this.NMT('免征公告查询')
+          }
           break
         default:
           this.navTit = '新能源公告查询'
-          this.NMT('新能源公告查询')
+          if (this.isApp()) {
+            this.NMT('新能源公告查询')
+          }
           break
       }
       localStorage.setItem('STEPV', e)
