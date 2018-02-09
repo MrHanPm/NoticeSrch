@@ -55,7 +55,8 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: 'https://s.kcimg.cn/m/ggh/',
+    // assetsPublicPath: 'https://s.kcimg.cn/m/ggh/on',
+    assetsPublicPath: 'https://s.kcimg.cn/m/ggh/dev',
     // assetsPublicPath: './',
 
     /**

@@ -127,61 +127,72 @@ export default {
   },
   methods: {
     sub () {
+      let sbgb = ''
       switch (this.cutTab) {
         case 0:
           if (this.forVal(this.noticeVal)) {
             localStorage.setItem('VAL', JSON.stringify(this.noticeVal))
+            sbgb = '公告号查询'
             this.jump('/bulletin')
           }
-          window.Truckhome_events({
-            Category: '公告号查询',
-            Action: '点击公告查询',
-            Label: JSON.stringify(this.noticeVal)
-          })
+          for (let ems in this.noticeVal) {
+            if (this.noticeVal[ems]) {
+              sbgb += '|' + ems
+            }
+          }
+          window.ga('send', 'event', '公告号查询', '开始查询', sbgb)
           break
         case 1:
           if (this.forVal(this.chassVal)) {
             localStorage.setItem('VAL', JSON.stringify(this.chassVal))
+            sbgb = '底盘查询'
             this.jump('/chassis')
           }
-          window.Truckhome_events({
-            Category: '公告号查询',
-            Action: '点击底盘查询',
-            Label: JSON.stringify(this.chassVal)
-          })
+          for (let ems in this.chassVal) {
+            if (this.chassVal[ems]) {
+              sbgb += '|' + ems
+            }
+          }
+          window.ga('send', 'event', '公告号查询', '开始查询', sbgb)
           break
         case 2:
           if (this.forVal(this.fuelVal)) {
             localStorage.setItem('VAL', JSON.stringify(this.fuelVal))
+            sbgb = '燃油查询'
             this.jump('/fuel')
           }
-          window.Truckhome_events({
-            Category: '公告号查询',
-            Action: '点击燃油查询',
-            Label: JSON.stringify(this.fuelVal)
-          })
+          for (let ems in this.fuelVal) {
+            if (this.fuelVal[ems]) {
+              sbgb += '|' + ems
+            }
+          }
+          window.ga('send', 'event', '公告号查询', '开始查询', sbgb)
           break
         case 3:
           if (this.forVal(this.exemVal)) {
             localStorage.setItem('VAL', JSON.stringify(this.exemVal))
+            sbgb = '免征查询'
             this.jump('/exempt')
           }
-          window.Truckhome_events({
-            Category: '公告号查询',
-            Action: '点击免征查询',
-            Label: JSON.stringify(this.exemVal)
-          })
+          for (let ems in this.exemVal) {
+            if (this.exemVal[ems]) {
+              sbgb += '|' + ems
+            }
+          }
+          window.ga('send', 'event', '公告号查询', '开始查询', sbgb)
           break
         default:
           if (this.forVal(this.enerVal)) {
             localStorage.setItem('VAL', JSON.stringify(this.enerVal))
+            sbgb = '新能源查询'
             this.jump('/energy')
           }
-          window.Truckhome_events({
-            Category: '公告号查询',
-            Action: '点击新能源查询',
-            Label: JSON.stringify(this.enerVal)
-          })
+          for (let ems in this.enerVal) {
+            if (this.enerVal[ems]) {
+              sbgb += '|' + ems
+            }
+          }
+          window.ga('send', 'event', '公告号查询', '开始查询', sbgb)
       }
     },
     setVals (val) {
@@ -204,7 +215,7 @@ export default {
     },
     forVal (objs) {
       for (let em in objs) {
-        if (objs[em] !== '') {
+        if (objs[em]) {
           return true
         }
       }

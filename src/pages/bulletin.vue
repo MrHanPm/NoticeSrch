@@ -58,6 +58,9 @@ export default {
     if (this.isApp()) {
       this.isIco = false
       this.NMT('公告查询结果')
+      setTimeout(() => {
+        this.NMT('公告查询结果')
+      }, 900)
     }
     if (this.$route.query.v) {
       newVal.model = this.$route.query.v

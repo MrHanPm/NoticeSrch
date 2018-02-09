@@ -4,9 +4,9 @@
 // 后端 API 地址，最好以 http(s):// 打头
 export const HTTP_DEV = 'https://product-new.m.360che.com'
 
-export const HTTPS = 'api/'
+export const HTTPS = 'https://product.m.360che.com'
 
-export const DEBUG = true
+export const DEBUG = false
 
 /*
 // 本地存储数据名称表

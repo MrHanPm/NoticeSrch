@@ -26,7 +26,7 @@ export default {
       return UA.match(/360che/gi) ? 1 : 0
     },
     NMT (txt) {
-      window.WebViewJavascriptBridge.callHandler('onChangeWebTitle', {'changeWebTitle': txt})
+      window.WebViewJavascriptBridge && window.WebViewJavascriptBridge.callHandler('onChangeWebTitle', {'changeWebTitle': txt})
     }
   }
 }
